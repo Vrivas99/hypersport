@@ -49,7 +49,7 @@ export default function CardComponent() {
                         </a>
                         <div className="mt-4 px-5 pb-5">
                             <a href="#">
-                                <h5 className="text-xl text-slate-900">{items.title}</h5>
+                                <h5 className="truncate hover:text-clip text-xl text-slate-900" title={items.title}>{items.title}</h5>
                             </a>
                             <div className="mt-2 mb-5 flex items-center justify-between">
                                 <p>

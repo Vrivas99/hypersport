@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Prodcards from '@/components/Prodcards'
 
