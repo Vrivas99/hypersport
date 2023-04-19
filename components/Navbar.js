@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Navlinks from './Navlinks'
 import Navbutton from './Navbutton'
 import { React, useState } from "react";
+import Carrito from './Carrito'
 
 const Navbar = ({children}) => {
   const [open, setOpen] = useState(false)
@@ -13,7 +14,7 @@ const Navbar = ({children}) => {
         <nav className='bg-black'>
             <div className='flex items-center font-medium justify-around'>
                 <div className='z-50 md:w-auto w-full flex justify-between'>
-                    <Image src={Logo} className='md:cursor-pointer h-24 w-24'></Image>
+                    <Image src={Logo} className='md:cursor-pointer h-24 w-24' alt='Imagen Prod'></Image>
                     <div className='p-7 md:hidden'onClick={() =>setOpen(!open)}>
                       <button className='bg-purple-600 text-white px-6 py-2 rounded-full font-sans' name={`${open}`}>Menu</button>
                     </div>
@@ -40,6 +41,7 @@ const Navbar = ({children}) => {
             </div>
         </nav>
         {children}
+        <Carrito/>
     </div>
     
   )

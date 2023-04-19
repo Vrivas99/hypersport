@@ -1,0 +1,34 @@
+import React from 'react'
+import Prodcards from '@/components/Prodcards'
+import { getPathsFromIds } from '@/lib/utils'
+import { getItemData } from '@/lib/utils'
+import Navbar from '@/components/Navbar'
+
+export default function ProductPage({productInfo}) {
+    return (
+        <div>
+            <Navbar/>
+            <Prodcards item={productInfo.data} showAs='Page'/>
+        </div>
+    )
+}
+
+export async function getStaticPaths(){
+    const paths = await getPathsFromIds()
+
+    return {
+        paths: paths,
+        fallback: false,
+    }
+}
+
+export async function getStaticProps({params}){
+    const id = params.id
+    const product = await getItemData(id)
+
+    return {
+        props:{
+            productInfo: product
+        }
+    }
+}

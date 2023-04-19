@@ -25,12 +25,12 @@ const Navlinks = () => {
             }]
         },
         {
-            name: 'Accesorios', submenu: true, sublink: [{
+            name: 'Ideas?', submenu: true, sublink: [{
                 sublink: [
-                    { name: 'Poleras', link: '/' },
-                    { name: 'Guantes', link: '/' },
-                    { name: 'Short', link: '/' },
-                    { name: 'Zapatillas', link: '/' },
+                    { name: '?????????????????', link: '/' },
+                    { name: '?????????????????', link: '/' },
+                    { name: '?????????????????', link: '/' },
+                    { name: '?????????????????', link: '/' },
                 ]
             }]
         }]
