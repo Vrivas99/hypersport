@@ -1,61 +1,64 @@
 import React, { createContext, useContext, useState } from 'react'
 
-const AppContext = createContext({
+
+
+const AppContext = createContext ({
     isOpen: true,
-    items:[],
-    openCart: () =>{},
-    closeCart: () => {},
-    addItemToCart: (item) =>{},
-    delItemToCart: (item) =>{},
-    getNumberOfItems: () => {},
+    items: [],
+    openCart: () => { },
+    closeCart: () => { },
+    delItemToCart: (item) => { },
+    addItemToCart: (item) => { },
+    getNumberOfItems: () => { },
 })
 
-const StateWrapper = ({children}) => {
+const StateWrapper = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [items, setItems] = useState([]);
-
-    function handleOpenCart(){
+    //abre carrito
+    function handleOpenCart() {
         setIsOpen(true)
     }
-
-    function handleCloseCart(){
+    //cierra carrito
+    function handleCloseCart() {
         setIsOpen(false)
     }
-
-    function handleAddItemToCart(item){
+    //funcion agregar producto de carrito
+    function handleAddItemToCart(item) {
         const temp = [...items]
         const found = temp.find(product => product.id === item.id)
 
-        if(found){
+        if (found) {
             found.qty++
-        }else{
+        } else {
             item.qty = 1
             temp.push(item)
         }
 
         setItems([...temp])
     }
-// REVISAR LOGICA 
-    function handDelItemToCart(item){
-        const temp = [...items]
-        const found = temp.find(product => product.id === product.id)
-
-        if(found.qty >= 1){
-            found.qty = found.qty -1
-        }if(found.qty === ''){
-            temp.pop(item)
+    //funcion eliminar producto de carrito
+    function handleRemoveItemToCart(item) {
+        const temp = [...items];
+        const found = temp.find((i) => i.id === item.id);
+        const indexDos = temp.indexOf(item);
+        if (found) {
+            if (found.qty <= 1) {
+                temp.splice(indexDos, 1);
+            } else {
+                found.qty--;
+            }
         }
-
-        setItems([...temp])
+        setItems([...temp]);
     }
 
 
-    
-    function handleNumberOfItems(){
-        const total = items.reduce((acc,item) => acc + item.qty,0)
-
+    // total entre todos los productos de carrito
+    function handleNumberOfItems() {
+        const total = items.reduce((acc, item) => acc + item.qty, 0)
         return total
     }
+    
     return (
         <AppContext.Provider value={{
             isOpen,
@@ -63,13 +66,13 @@ const StateWrapper = ({children}) => {
             openCart: handleOpenCart,
             closeCart: handleCloseCart,
             addItemToCart: handleAddItemToCart,
-            delItemToCart: handDelItemToCart,
+            delItemToCart: handleRemoveItemToCart,
             getNumberOfItems: handleNumberOfItems,
         }}>{children}</AppContext.Provider>
     )
 }
 
-export function useAppContext(){
+export function useAppContext() {
     return useContext(AppContext)
 }
 

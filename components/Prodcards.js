@@ -3,17 +3,16 @@ import Link from "next/link";
 import React from "react";
 import Cardbtn from "./Cardbtn";
 import { useAppContext } from "./StateWrapper"
+import remove from '../public/img/delete-icon.svg'
+import Image from "next/image";
 
-export default function CardComponent({ item, showAs, qty }) {
+export default function CardComponent({ item, showAs, qty = 0 }) {
     const cart = useAppContext()
 
-//Revisar eliminacion de productos en carrito
-    function handDelItemToCart(){
-        cart.DelItemToCart()
+    function removeToCart() {
+        cart.delItemToCart(item);
+        //Revisar eliminacion de productos en carrito
     }
-
-
-
     if (showAs === 'Page') {
         return (
             <div className="grid grid-cols-1 gap-4 place-items-center xl:mt-[5%] md:mt-[10%]">
@@ -33,19 +32,21 @@ export default function CardComponent({ item, showAs, qty }) {
             </div>
         )
     }
-
     if (showAs === 'ListItem') {
         return (
-            <div className="flex gap-2 border-b border-gray-300 p-2">
+            <div className="relative flex gap-2 border rounded-lg mb-2 border-gray-300 shadow-md p-3">
                 <div>
                     <img className="scale-90 min-w-[100px]" src={item.img} alt='Imagen Prod' width={100} height={100} />
                 </div>
                 <div>
                     <div className=" font-bold">{item.title}</div>
                     <div>Precio C/U: ${item.price}</div>
-                    {qty === 0 ? '':<div>Unidades: {qty}</div>}
-                    {qty === 0 ? '':<div className=" font-semibold">Subtotal: ${qty * item.price}</div>}
+                    {qty === 0 ? '' : <div>Unidades: {qty}</div>}
+                    {qty === 0 ? '' : <div className=" font-semibold">Subtotal: ${qty * item.price}</div>}
                 </div>
+                <button onClick={removeToCart} className="absolute bottom-10 right-10 flex w-8 items-center justify-center rounded bg-red-600">
+                    <Image src={remove} alt='removeimg'></Image>
+                </button>
             </div>
         )
     }
@@ -71,4 +72,5 @@ export default function CardComponent({ item, showAs, qty }) {
             </div>
         </>
     );
+    
 }
