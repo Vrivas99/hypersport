@@ -7,6 +7,6 @@ export default function Home() {
       <Navbar/>
       <h1>CHANCHITO FELIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZ</h1>
       <Link href='login'>IR LOGIN</Link>
-    </div>
+    </div> 
   )
 }
