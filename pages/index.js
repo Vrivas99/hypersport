@@ -6,7 +6,7 @@ export default function Home({items}) {
   return (
     <div>
       <Navbar/>
-      <div className="xl:mx-40 p-10 -z-50 grid justify-items-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <div className="xl:mx-40 -z-50 flex flex-wrap justify-center justify-items-center">
         {items && items.map((item)=> (
             <Prodcards key={item.id} item={item} showAs='default'/>
           ))}
