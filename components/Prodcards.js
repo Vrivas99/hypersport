@@ -52,19 +52,19 @@ export default function CardComponent({ item, showAs, qty = 0 }) {
     }
     return (
         <>
-            <div className="relative flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md m-3">
-                <Link className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href={`/${convertToPath(item.title)}`}>
+            <div className="relative flex w-44 h-64 md:h-auto md:w-auto max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md m-3">
+                <Link className="relative justify-center mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href={`/${convertToPath(item.title)}`}>
                     <img className="object-scale-down scale-90 hover:scale-100 ease-in duration-500" src={item.img} alt='Imagen Prod' />
                     <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">{item.Desc}</span>
                 </Link>
                 <div className="mt-4 px-5 pb-5">
                     <Link href={`/${convertToPath(item.title)}`}>
-                        <h5 className="truncate hover:text-clip text-xl text-slate-900" title={item.title}>{item.title}</h5>
+                        <h5 className="text-sm truncate hover:text-clip md:text-xl text-slate-900" title={item.title}>{item.title}</h5>
                     </Link>
                     <div className="mt-2 mb-5 flex items-center justify-between">
                         <p>
-                            <span className="text-3xl font-bold text-slate-900">${item.price}</span>
-                            <span className="text-sm text-slate-900 line-through">${item.originalPrice}</span>
+                            <span className="text-lg md:text-3xl font-bold text-slate-900">${item.price}</span>
+                            <span className="text-xs md:text-sm text-slate-900 line-through">${item.originalPrice}</span>
                         </p>
                     </div>
                     <Cardbtn item={item} />
