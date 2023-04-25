@@ -1,3 +1,4 @@
+import Catbanners from '@/components/Catbanners'
 import Navbar from '@/components/Navbar'
 import Prodcards from '@/components/Prodcards'
 import { getItems } from '@/services/itemService'
@@ -6,11 +7,13 @@ export default function Home({items}) {
   return (
     <div>
       <Navbar/>
-      <div className="xl:mx-40 p-10 -z-50 grid justify-items-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <Catbanners/>
+      <div className="-z-50 grid grid-cols-2 md:flex md:flex-wrap justify-center justify-items-center">
         {items && items.map((item)=> (
             <Prodcards key={item.id} item={item} showAs='default'/>
           ))}
       </div>
+      
     </div>
   )
 }
