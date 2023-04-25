@@ -47,7 +47,7 @@ export default function Carrito() {
                     <div className="relative text-2xl font-bold text-slate-900 mb-2 mt-2">Tus productos</div>
                     <div>
                         {cart.items.map((item) => (
-                            <div className="">
+                            <div key={item.id}>
                                 <Prodcards key={item.id} item={item} showAs='ListItem' qty={item.qty} />
                             </div>
 

@@ -5,16 +5,12 @@ import BannersRegistro from '@/components/BannersRegistro'
 
 const Registro = () => {
     return (
-
         <div>
             <Script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.15/tailwind.min.css" />
-            <Navbar/>
-
+            <Navbar />
             <BannersRegistro>
             </BannersRegistro>
         </div>
-        
-        
     )
 }
 

@@ -14,7 +14,7 @@ const Catbanners = () => {
                 <Image className="object-scale-down scale-90 hover:scale-100 ease-in duration-500" src={Basquet} alt='Imagen Prod'></Image>
             </Link>
             <Link className="justify-center flex w-1/2 md:w-80 md:h-80 overflow-hidden" href=''>
-                <Image className="object-scale-down scale-90 hover:scale-100 ease-in duration-500" src={Futbol} alt='Imagen Prod'></Image>
+                <Image className="object-scale-down scale-90 hover:scale-100 ease-in duration-500" priority src={Futbol} alt='Imagen Prod'></Image>
             </Link>
             <Link className="justify-center flex w-1/2 md:w-80 md:h-80 overflow-hidden" href=''>
                 <Image className="object-scale-down scale-90 hover:scale-100 ease-in duration-500" src={Volei} alt='Imagen Prod'></Image>

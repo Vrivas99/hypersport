@@ -1,15 +1,15 @@
-import Logo from '../public/img/fotodeportiva.jpg'
+import Logo from '../public/img/fondoanime.jpg'
 import Image from 'next/image'
-import { React } from "react";
+import Link from 'next/link';
 
 const BannersLogin = () => {
   return (
 
-    <div className='flex flex-col md:flex-row h-screen items-center'>
+    <div className='flex flex-col md:flex-row items-center'>
 
       {/* Lado Izquierdo */}
-      <div className='h-screen bg-blue-600 lg:block md:w-1/2 xl:w-2/3 h-screen'>
-            <Image src={Logo} className='w-full h-full objet-cover'></Image>
+      <div className='h-screen bg-blue-600 lg:block md:w-1/2 xl:w-2/3'>
+            <Image src={Logo} className='w-full h-full objet-cover' alt='imgReg'></Image>
       </div>
 
       {/* Lado derecho */}
@@ -22,7 +22,7 @@ const BannersLogin = () => {
 
             <div>
               <label className='block text-gray-700'>Correo electronico</label>
-              <input type='email' placeholder='Ingresa tu correo electronico' className='w-full bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' autocomplete autofocus required></input>
+              <input type='email' placeholder='Ingresa tu correo electronico' className='w-full bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' autoComplete='true' autoFocus required></input>
             </div>
             
             <div className='mt-4'>
@@ -44,7 +44,7 @@ const BannersLogin = () => {
             <hr className='my-6 border-gray-300 w-full'></hr>
 
             <div className='text-center mt-2'>
-              <a href='login' className='text-sm font-semibold text-gray-700 hover:text-blue-700'>Ya tienes cuenta? Inicia Sesion Aqui!</a>
+              <Link href='login' className='text-sm font-semibold text-gray-700 hover:text-blue-700'>Ya tienes cuenta? Inicia Sesion Aqui!</Link>
             </div>
 
           </form>

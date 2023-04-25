@@ -27,10 +27,10 @@ const Navlinks = () => {
         {
             name: 'Ideas?', submenu: true, sublink: [{
                 sublink: [
+                    { name: '????????????????', link: '/' },
                     { name: '?????????????????', link: '/' },
-                    { name: '?????????????????', link: '/' },
-                    { name: '?????????????????', link: '/' },
-                    { name: '?????????????????', link: '/' },
+                    { name: '???????????????', link: '/' },
+                    { name: '??????????????????', link: '/' },
                 ]
             }]
         }]
@@ -38,7 +38,7 @@ const Navlinks = () => {
     
     return <>
         {links.map(link => (
-            <div>
+            <div key={link.name}>
                 <div className='px-3 text-left md:cursor-pointer hover:text-purple-600 group'>
                     <h1 className='py-7 flex justify-between items-center' onClick={() => sblink !== link.name ? setSblink(link.name) : setSblink('')}>
                         {link.name}
@@ -57,9 +57,9 @@ const Navlinks = () => {
                             <div className='bg-black p-7 rounded-md'>
                                 {
                                 link.sublink.map((mysublinks) => (
-                                    <div>
+                                    <div key={mysublinks.sublink}>
                                         {mysublinks.sublink.map((slink) => (
-                                            <li className='text-sm text-gray-300 my-4'>
+                                            <li key={slink.name} className='text-sm text-gray-300 my-4'>
                                                 <Link href={slink.link} className='hover:text-purple-600'>{slink.name}</Link>
                                             </li>
                                         ))}
@@ -72,9 +72,9 @@ const Navlinks = () => {
                 {/*menu movil */}
                 <div className={`md:hidden ${sblink === link.name ? 'md:hidden' : 'hidden'}`}>
                     {link.sublink.map((mysublinks) => (
-                        <div>
+                        <div key={mysublinks.sublink}>
                             {mysublinks.sublink.map((slink) => (
-                                <li className='py-3 pl-14 text-sm text-gray-300'>
+                                <li key={slink.name} className='py-3 pl-14 text-sm text-gray-300'>
                                     <Link href={slink.link} className='hover:text-purple-600'>{slink.name}</Link>
                                 </li>
                             ))}

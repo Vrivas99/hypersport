@@ -13,6 +13,9 @@ export default function CardComponent({ item, showAs, qty = 0 }) {
         cart.delItemToCart(item);
         //Revisar eliminacion de productos en carrito
     }
+    function addToCart(){
+        cart.addItemToCart(item);
+    }
     if (showAs === 'Page') {
         return (
             <div className="grid grid-cols-1 gap-4 place-items-center xl:mt-[5%] md:mt-[10%]">
@@ -34,19 +37,26 @@ export default function CardComponent({ item, showAs, qty = 0 }) {
     }
     if (showAs === 'ListItem') {
         return (
-            <div className="relative flex gap-2 border rounded-lg mb-2 border-gray-300 shadow-md p-3">
+            <div className="relative grid grid-cols-3 md:flex gap-2 border rounded-lg mb-2 border-gray-300 shadow-md p-3">
                 <div>
                     <img className="scale-90 min-w-[100px]" src={item.img} alt='Imagen Prod' width={100} height={100} />
                 </div>
                 <div>
-                    <div className=" font-bold">{item.title}</div>
+                    <div className="font-bold truncate hover:text-clip">{item.title}</div>
                     <div>Precio C/U: ${item.price}</div>
-                    {qty === 0 ? '' : <div>Unidades: {qty}</div>}
+                    
                     {qty === 0 ? '' : <div className=" font-semibold">Subtotal: ${qty * item.price}</div>}
                 </div>
-                <button onClick={removeToCart} className="absolute bottom-10 right-10 flex w-8 items-center justify-center rounded bg-red-600">
-                    <Image src={remove} alt='removeimg'></Image>
-                </button>
+                <div className="flex absolute bottom-1/3 right-6 md:bottom-1/4 md:right-12 justify-center space-x-3">
+                    <button onClick={addToCart} className="flex w-8 h-8 items-center justify-center rounded bg-green-600">
+                        <p className="font-bold text-white">+</p>
+                    </button>
+                    {qty === 0 ? '' : <div>{qty}</div>}
+                    <button onClick={removeToCart} className="flex w-8 h-8 items-center justify-center rounded bg-red-600">
+                        <p className="font-bold text-white">-</p>
+                    </button>
+                </div>
+
             </div>
         )
     }
