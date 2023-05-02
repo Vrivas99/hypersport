@@ -1,4 +1,4 @@
-import Logo from '../public/img/fotodeportiva.jpg'
+import Logo from '../public/img/fondoanime.jpg'
 import Image from 'next/image'
 import { React, useState } from "react";
 import registro from '@/pages/registro';
@@ -32,7 +32,7 @@ const errorMessage = {
                 autocomplete autofocus required
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
               </input>
-              <span className='text-red-500'>{errorMessage.message}</span>
+              {/* <span className='text-red-500'>{errorMessage.message}</span> */}
             </div>
             
 

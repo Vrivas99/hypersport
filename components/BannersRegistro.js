@@ -1,4 +1,4 @@
-import Logo from '../public/img/fotodeportiva.jpg'
+import Logo from '../public/img/fondoanime.jpg'
 import Image from 'next/image'
 import { React } from "react";
 
