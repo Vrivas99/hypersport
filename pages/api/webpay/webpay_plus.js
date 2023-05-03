@@ -1,4 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+/* 
+
+  ARCHIVO DE TESTEO PARA EXPERIMENTAR Y NO ROMPER EL OTRO
+
+*/
 import { WebpayPlus } from 'transbank-sdk'; // ES6
 import { Options, IntegrationApiKeys, Environment, IntegrationCommerceCodes } from 'transbank-sdk'; // ES6 Modules
 import asyncHandler from '@/utils/async_handler';

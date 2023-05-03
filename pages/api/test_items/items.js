@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
+// ESTE ARCHIVO RECIBE SOLO UN RESPONSE DE LOS DATOS ABAJO USAR ESTE COMO PRUEBA SI NO TIENES LA BD
 export default function handler(req, res) {
   res.status(200).json([
     {
