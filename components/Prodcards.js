@@ -3,8 +3,6 @@ import Link from "next/link";
 import React from "react";
 import Cardbtn from "./Cardbtn";
 import { useAppContext } from "./StateWrapper"
-import remove from '../public/img/delete-icon.svg'
-import Image from "next/image";
 
 export default function CardComponent({ item, showAs, qty = 0 }) {
     const cart = useAppContext()
@@ -48,12 +46,12 @@ export default function CardComponent({ item, showAs, qty = 0 }) {
                     {qty === 0 ? '' : <div className=" font-semibold">Subtotal: ${qty * item.price}</div>}
                 </div>
                 <div className="flex absolute bottom-1/3 right-6 md:bottom-1/4 md:right-12 justify-center space-x-3">
-                    <button onClick={addToCart} className="flex w-8 h-8 items-center justify-center rounded bg-green-600">
-                        <p className="font-bold text-white">+</p>
-                    </button>
-                    {qty === 0 ? '' : <div>{qty}</div>}
                     <button onClick={removeToCart} className="flex w-8 h-8 items-center justify-center rounded bg-red-600">
                         <p className="font-bold text-white">-</p>
+                    </button>
+                    {qty === 0 ? '' : <div>{qty}</div>}
+                    <button onClick={addToCart} className="flex w-8 h-8 items-center justify-center rounded bg-green-600">
+                        <p className="font-bold text-white">+</p>
                     </button>
                 </div>
 
