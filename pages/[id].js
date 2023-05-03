@@ -3,12 +3,14 @@ import Prodcards from '@/components/Prodcards'
 import { getPathsFromIds } from '@/lib/utils'
 import { getItemData } from '@/lib/utils'
 import Navbar from '@/components/Navbar'
+import Footer from '@/components/footer'
 
 export default function ProductPage({productInfo}) {
     return (
         <div>
             <Navbar/>
             <Prodcards item={productInfo.data} showAs='Page'/>
+            <Footer/>
         </div>
     )
 }

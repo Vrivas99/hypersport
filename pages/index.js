@@ -15,7 +15,7 @@ export default function Home({ items }) {
           <Prodcards key={item.id} item={item} showAs='default' />
         ))}
       </div>
-
+      <Footer/>
     </div>
   )
 }
