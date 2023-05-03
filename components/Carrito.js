@@ -50,7 +50,6 @@ export default function Carrito() {
                             <div key={item.id}>
                                 <Prodcards key={item.id} item={item} showAs='ListItem' qty={item.qty} />
                             </div>
-
                         ))}
                     </div>
                     <div className='grid gap-7 justify-center'>
