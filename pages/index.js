@@ -2,6 +2,7 @@ import Catbanners from '@/components/Catbanners'
 import Navbar from '@/components/Navbar'
 import Prodcards from '@/components/Prodcards'
 import { getItems } from '@/services/itemService'
+import Footer from '@/components/footer'
 
 
 export default function Home({ items }) {
