@@ -3,8 +3,6 @@ import Link from "next/link";
 import React from "react";
 import Cardbtn from "./Cardbtn";
 import { useAppContext } from "./StateWrapper"
-import remove from '../public/img/delete-icon.svg'
-import Image from "next/image";
 
 export default function CardComponent({ item, showAs, qty = 0 }) {
     const cart = useAppContext()
