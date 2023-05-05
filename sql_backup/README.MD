@@ -9,6 +9,9 @@ Siempre importar la ultima version disponible (indicada con flecha)
 | |DUMP V3| -> [20230505] - $05-05-2023$  |
 |                                         |
 +-----------------------------------------+
+`Para crear la nueva base de datos`
+Abrir mysql command line y darle; 'CREATE DATABASE test;'
+esto te creara el schema en mysql8.0.
 
 ## Contexto
 Los archivos mysql de esta carpeta definen como funcionan las tablas, puedes
