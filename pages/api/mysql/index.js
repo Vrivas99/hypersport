@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 }
 
 const recuperarProducto = async(req,res) =>{
-    const [result] = await pool.query('select id,title,img,Descu,descripcion,price,cantidad,originalPrice from producto join imagen on producto.id = imagen.idProducto')
+    const [result] = await pool.query('select id,title,img,Descu,descripcion,price,cantidad,originalPrice from producto')
     const resultStringify = JSON.stringify(result)
     const resultParse = JSON.parse(resultStringify)
     //-----------------------------------------------------------------
