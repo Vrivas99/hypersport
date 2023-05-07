@@ -1,26 +1,31 @@
+import Catbanners from '@/components/Catbanners'
 import Navbar from '@/components/Navbar'
 import Prodcards from '@/components/Prodcards'
-import { getItems } from '@/services/itemService'
+import { getItemsINDEX } from '@/services/itemService'
+import Footer from '@/components/footer'
 
-export default function Home({items}) {
+
+export default function Home({ items }) {
   return (
     <div>
-      <Navbar/>
-      <div className="xl:mx-40 p-10 -z-50 grid justify-items-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-        {items && items.map((item)=> (
-            <Prodcards key={item.id} item={item} showAs='default'/>
-          ))}
+      <Navbar />
+      <Catbanners />
+      <div className="-z-50 grid grid-cols-2 md:flex md:flex-wrap justify-center justify-items-center">
+        {items && items.map((item) => (
+          <Prodcards key={item.id} item={item} showAs='default' />
+        ))}
       </div>
+      <Footer/>
     </div>
   )
 }
 
-export async function getStaticProps(){
-  const res = await getItems()
-
+export async function getStaticProps() {
+  const res = await getItemsINDEX()
   return {
-    props:{
+    props: {
       items: res,
     }
   }
 }
+

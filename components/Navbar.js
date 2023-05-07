@@ -14,7 +14,9 @@ const Navbar = ({children}) => {
         <nav className='bg-black'>
             <div className='flex items-center font-medium justify-around'>
                 <div className='z-50 md:w-auto w-full flex justify-between'>
-                    <Image src={Logo} className='md:cursor-pointer h-24 w-24' alt='Imagen Prod'></Image>
+                    <Link href='/'>
+                      <Image src={Logo} className='md:cursor-pointer h-24 w-24' alt='Imagen Prod'></Image>
+                    </Link>
                     <div className='p-7 md:hidden'onClick={() =>setOpen(!open)}>
                       <button className='bg-purple-600 text-white px-6 py-2 rounded-full font-sans' name={`${open}`}>Menu</button>
                     </div>
