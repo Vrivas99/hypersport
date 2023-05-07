@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Sad from '../public/img/sadcartman.png'
 import { useEffect, useState } from 'react'
 
-
+let ovj = []
 
 export default function Carrito() {
     const cart = useAppContext()
@@ -16,8 +16,11 @@ export default function Carrito() {
     }
     function getTotal() {
         const total = cart.items.reduce((acc, item) => acc + item.qty * item.price, 0)
+        ovj = total
+        console.log(ovj)
         return total
     }
+
     useEffect(()=>{
         async function getToken() {
             console.log("consoleLog token")
@@ -33,7 +36,6 @@ export default function Carrito() {
             console.log(res.url)
             setUrl(res.url)
         }
-
         getToken();
         getUrl();
     },[]);
@@ -53,7 +55,7 @@ export default function Carrito() {
                         ))}
                     </div>
                     <div className='grid gap-7 justify-center'>
-                        <div className=" w-full font-bold font-sans text-2xl flex justify-center">
+                        <div id="este" className=" w-full font-bold font-sans text-2xl flex justify-center">
                             Total: ${getTotal()}
                         </div>
                         <form action={urlResponse} method="POST">

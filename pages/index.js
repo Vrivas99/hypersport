@@ -1,7 +1,7 @@
 import Catbanners from '@/components/Catbanners'
 import Navbar from '@/components/Navbar'
 import Prodcards from '@/components/Prodcards'
-import { getItems } from '@/services/itemService'
+import { getItemsINDEX } from '@/services/itemService'
 import Footer from '@/components/footer'
 
 
@@ -21,7 +21,7 @@ export default function Home({ items }) {
 }
 
 export async function getStaticProps() {
-  const res = await getItems()
+  const res = await getItemsINDEX()
   return {
     props: {
       items: res,

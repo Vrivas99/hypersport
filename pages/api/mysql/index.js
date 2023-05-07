@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 }
 
 const recuperarProducto = async(req,res) =>{
-    const [result] = await pool.query('select id,title,img,Descu,descripcion,price,cantidad,originalPrice from producto')
+    const [result] = await pool.query('select id,title,img,Descu,descripcion,price,cantidad,originalPrice from producto where title IS NOT NULL AND ID > 6')
     const resultStringify = JSON.stringify(result)
     const resultParse = JSON.parse(resultStringify)
     //-----------------------------------------------------------------
@@ -19,7 +19,6 @@ const recuperarProducto = async(req,res) =>{
     //const pos = resultParse.map(val => val.NOMBRE).indexOf('PRUEBA')
     //console.log(resultParse[pos].IMG)
     //-----------------------------------------------------------------
-    console.log(resultParse)
     return res.status(200).json(resultParse)
 }
 
