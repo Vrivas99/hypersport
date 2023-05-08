@@ -6,9 +6,14 @@ Siempre importar la ultima version disponible (indicada con flecha)
 | |DUMP V2| [20230503] - $03-05-2023$     |
 |                                         |
 +----Nuevo_SCHEMA_'test'_base_de_datos----+
-| |DUMP V3| -> [20230505] - $05-05-2023$  |
-|                                         |
+| |DUMP V3|    [20230505] - $05-05-2023$  |
+| |DUMP V3|    [20230506] - $07-05-2023$  |
+| |DUMP V4| -> [20230508] - $08-05-2023$  |
 +-----------------------------------------+
+
+`Para crear la nueva base de datos`
+Abrir mysql command line y darle; 'CREATE DATABASE test;'
+esto te creara el schema en mysql8.0.
 
 ## Contexto
 Los archivos mysql de esta carpeta definen como funcionan las tablas, puedes
@@ -50,6 +55,14 @@ id int NOT NULL AUTO_INCREMENT,
  originalPrice int, 
  cantidad int,
  PRIMARY KEY (id));
+```
+
+```sql
+#ALTER TABLE producto ADD idcategoria int;
+#UPDATE PRODUCTO t2
+#	JOIN VOLEY t1 ON t2.title = t1.TITULO
+#SET t2.idcategoria = 4;
+#SELECT t1.id,t1.title,t2.nombre as categoria,t1.Descu,t1.descripcion,t1.price,t1.cantidad,t1.originalPrice from producto as t1 JOIN CATEGORIA as t2 on t1.idcategoria = t2.id where t1.title IS NOT NULL AND t1.id > 6;
 ```
 
 ## Diseños
