@@ -40,11 +40,7 @@ const Registro = () => {
                                 <input type='password' minLength="6" placeholder='Confirmar contrasena' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' required></input>
                             </div>
 
-                            <div className='text-right mt-2'>
-                                <a href='#' className='text-sm font-semibold text-gray-700 hover:text-purple-600'>Olvidaste tu contrasena?</a>
-                            </div>
-
-                            <button className='w-full block bg-purple-500 hover:bg-purple-400 px-4 py-3 mt-6 rounded-lg font-semibold text-white focus:bg-purple-400' type="submit">Registrarte</button>
+                            <button className='w-full block bg-purple-500 hover:bg-purple-400 px-4 py-3 mt-10 rounded-lg font-semibold text-white focus:bg-purple-400' type="submit">Registrarte</button>
 
                             <hr className='my-6 border-gray-300 w-full'></hr>
 
