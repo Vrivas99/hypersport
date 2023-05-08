@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar'
 import Prodcards from '@/components/Prodcards'
 import { getItemsINDEX } from '@/services/itemService'
 import Footer from '@/components/footer'
+import axios from 'axios'
 
 
 export default function Home({ items }) {
@@ -15,7 +16,7 @@ export default function Home({ items }) {
           <Prodcards key={item.id} item={item} showAs='default' />
         ))}
       </div>
-      <Footer/>
+      <Footer />
     </div>
   )
 }
