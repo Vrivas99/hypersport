@@ -19,7 +19,7 @@ export default function Carrito() {
             buyO: "O-" + Math.floor(Math.random() * 10000) + 1,
             sessID: "S-" + Math.floor(Math.random() * 10000) + 1,
             amt: getTotal(),
-            retUrl: 'http://localhost:3000/',
+            retUrl: 'http://localhost:3000',
         })
         console.log(getTotal())
         console.log(res.data.token)
