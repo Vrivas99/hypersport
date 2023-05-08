@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 }
 
 const recuperarProducto = async(req,res) =>{
-    const [result] = await pool.query('select id,title,img,Descu,descripcion,price,cantidad,originalPrice from producto where title IS NOT NULL AND ID > 6')
+    const [result] = await pool.query('SELECT t1.id,t1.title,t2.nombre as categoria,t1.Descu,t1.descripcion,t1.price,t1.cantidad,t1.originalPrice from producto as t1 JOIN CATEGORIA as t2 on t1.idcategoria = t2.id where t1.title IS NOT NULL AND t1.id > 6')
     const resultStringify = JSON.stringify(result)
     const resultParse = JSON.parse(resultStringify)
     //-----------------------------------------------------------------
