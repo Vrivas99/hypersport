@@ -1,8 +1,9 @@
 import Catbanners from '@/components/Catbanners'
 import Navbar from '@/components/Navbar'
 import Prodcards from '@/components/Prodcards'
-import { getItems } from '@/services/itemService'
+import { getItemsINDEX } from '@/services/itemService'
 import Footer from '@/components/footer'
+import axios from 'axios'
 
 
 export default function Home({ items }) {
@@ -15,13 +16,13 @@ export default function Home({ items }) {
           <Prodcards key={item.id} item={item} showAs='default' />
         ))}
       </div>
-      <Footer/>
+      <Footer />
     </div>
   )
 }
 
 export async function getStaticProps() {
-  const res = await getItems()
+  const res = await getItemsINDEX()
   return {
     props: {
       items: res,
