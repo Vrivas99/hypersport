@@ -10,6 +10,10 @@ const Navlinks = () => {
                     { name: 'Tenis', link: '/' },
                     { name: 'Basquetbol', link: '/' },
                     { name: 'Voleibol', link: '/' },
+                    { name: 'Golf', link: '/' },
+                    { name: 'Hockey', link: '/' },
+                    { name: 'Ciclismo', link: '/' },
+                    { name: 'Baseball', link: '/' },
                 ]
 
             }]
@@ -21,6 +25,16 @@ const Navlinks = () => {
                     { name: 'Guantes', link: '/' },
                     { name: 'Short', link: '/' },
                     { name: 'Zapatillas', link: '/' },
+                    { name: 'Pantalones', link: '/' },
+                    { name: 'Gorras', link: '/' },
+                ]
+            }]
+        },
+        {
+            name: 'Otros', submenu: true, sublink: [{
+                sublink: [
+                    { name: 'Articulos Deportivos', link: '/' },
+                    { name: 'Accesorios', link: '/' },
                 ]
             }]
         }]
