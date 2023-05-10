@@ -1,7 +1,14 @@
 import React from 'react'
 import Listaprod from '@/components/Listaprod'
 import { getItems } from '@/services/itemService'
-const adminPage = ({items}) => {
+import Formularioprod from '@/components/Formularioprod'
+import { getPathsFromIds } from '@/lib/utils'
+
+const adminPage = ({items,showAs}) => {
+    if(showAs === 'Form'){
+        return <Formularioprod item={productInfo.data} showAs='Form'/>
+    }
+    
     return (
         <div className="bg-gray-900 antialiased h-full">
             <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -32,8 +39,8 @@ const adminPage = ({items}) => {
             </aside>
 
             <div className="p-4 sm:ml-64">
-                <div className="text-white p-4 border-2border-gray-200 border-dashed rounded-lgdark:border-gray-700 h-full">
-                    <table className='w-full'>
+                <div className="text-white p-4 border-2border-gray-200 border-dashed rounded-lgdark:border-gray-700 h-full">             
+                    <table className='w-full rounded-xl'>
                         <thead>
                             <tr>
                                 <th class='border border-gray-400 px-4 py-1 w-0'>ID</th>
@@ -68,5 +75,7 @@ export async function getStaticProps() {
         items: res,
       }
     }
-  }
+}
+
+  
   
