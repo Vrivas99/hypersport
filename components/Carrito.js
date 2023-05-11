@@ -39,7 +39,7 @@ export default function Carrito() {
     useEffect(()=>{    
     })
     return (
-        <div style={{ display: cart.isOpen ? 'block' : 'none' }} className="z-50 fixed right-0 top-0 bg-white w-screen md:w-3/6 xl:w-4/12 h-screen p-6 shadow-2xl shadow-slate-950 flex flex-col">
+        <div style={{ display: cart.isOpen ? 'block' : 'none' }} className=" overflow-y-auto z-50 fixed right-0 top-0 bg-white w-screen md:w-3/6 xl:w-4/12 h-screen p-6 shadow-2xl shadow-slate-950 flex flex-col">
             <button className=' cursor-pointer bg-purple-600 hover:bg-purple-900 text-white px-6 py-2 rounded-full font-sans' onClick={handleCloseCart}>Cerrar</button>
             {cart.items.length === 0 ? <div className=" h-full flex items-center justify-center flex-col"><Image className=" w-56" src={Sad} alt="carritoimg"></Image><div className="text-3xl font-bold text-slate-900">Carrito vacio</div></div> :
                 <div className="grid gap-5">
