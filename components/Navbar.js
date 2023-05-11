@@ -10,7 +10,7 @@ import Carrito from './Carrito'
 const Navbar = ({children}) => {
   const [open, setOpen] = useState(false)
   return (
-    <div>
+    <div className='sticky top-0 z-50'>
         <nav className='bg-black'>
             <div className='flex items-center font-medium justify-around'>
                 <div className='z-50 md:w-auto w-full flex justify-between'>
