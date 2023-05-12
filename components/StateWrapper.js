@@ -56,6 +56,7 @@ const StateWrapper = ({ children }) => {
     // total entre todos los productos de carrito
     function handleNumberOfItems() {
         const total = items.reduce((acc, item) => acc + item.qty, 0)
+        console.log("state wrap count: "+ total)
         return total
     }
     
