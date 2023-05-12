@@ -1,8 +1,18 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 /* import { getItems } from '@/services/itemService' */
 
 export default function Listaprod({ item }) {
+    function lockData(e){
+        var ide = item.id
+        var tit = item.title
+        var pre = item.price
+        const undersc = "\n----------------------------"
+        console.log(`${undersc}\nID: ` + ide,"\nTIT: " + tit,"\nPRE: " +pre+`${undersc}`)
+    }
+    useEffect(() => {
+    },[])
+
     return (
         <tr className=' border-b bg-gray-900 border-gray-700 hover:bg-gray-700 hover:text-white'>
             <th scope='row' className='px-4 py-1 font-medium text-white'>{item.id}</th>
@@ -12,9 +22,18 @@ export default function Listaprod({ item }) {
             <td scope='row' className='px-4 py-1'>{item.price}</td>
 
             <td scope='row' className='px-4 py-1'>{item.descripcion}</td>
-
+            
             <td className='px-6 py-4'>
-                <Link href='#' className='cursor-pointer p-2 font-medium text-blue-600 hover:underline'>MODIFICAR</Link>
+                <Link onClick={lockData} href={{
+                             query: {id: item.id,
+                                     titulo: item.title,
+                                     descripcion: item.descripcion,
+                                     precio: item.originalPrice,
+                                     descu: item.descu,
+                                     stock: item.cantidad,
+                                     categoria: item.categoria}, pathname:'/modifprod',
+                            }}
+                 className='cursor-pointer p-2 font-medium text-blue-600 hover:underline'>MODIFICAR</Link>
                 <Link href='#' className='cursor-pointer p-2 font-medium text-red-500 hover:underline'>ELIMINAR</Link>
             </td>
         </tr>

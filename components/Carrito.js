@@ -23,26 +23,23 @@ export default function Carrito() {
                 console.log(response.data.url)
                 setToken(response.data.token)
                 setUrl(response.data.url)
+                getForm(response)
+                doit()
             },(error) =>{
                 console.log(error);
          });
-
-        //Llenado de las variables para form de la TRANSACCION 
-        console.log("setToken: "+ tokenResponse)
-        console.log("setUTL:" + urlResponse )
     }
 
-    function getForm(){
-        const web = document.getElementById("web").submit
-        console.log(web) 
+    function getForm(res){
+        const web = document.getElementById("web").action = res.data.url
+        const web1 = document.getElementById("web").action
+        const web2 = document.getElementById("tok").value = res.data.token
+        const web3 = document.getElementById("web")
+        console.log(web3) 
     }
-
     function doit(){
-        handleSubmit
-        getForm()
-        
+        const transac = document.getElementById("web").submit()
     }
-
 
     function handleCloseCart() {
         cart.closeCart()
@@ -74,11 +71,10 @@ export default function Carrito() {
                             Total: ${getTotal()}
                         </div>
                         <form id="hola" onSubmit={handleSubmit}>
-                            <button className=" w-72 flex justify-center cursor-pointer bg-green-600 hover:bg-green-900 text-white px-6 py-2 rounded-md font-sans" >Apretar este primero</button>
+                            <button className=" w-72 flex justify-center cursor-pointer bg-green-600 hover:bg-green-900 text-white px-6 py-2 rounded-md font-sans" >Cancelar Compra</button>
                         </form>
                         <form id="web" action={urlResponse} method="POST">
-                            <input type="hidden" name="token_ws" value={tokenResponse} />
-                            <input type="submit" value="Apretar este despues" className=" w-72 flex justify-center cursor-pointer bg-green-600 hover:bg-green-900 text-white px-6 py-2 rounded-md font-sans" />
+                            <input id="tok" type="hidden" name="token_ws" value={tokenResponse} />
                         </form>
                     </div>
                 </div>}
