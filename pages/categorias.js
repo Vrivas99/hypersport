@@ -1,11 +1,13 @@
+import Navbar from '@/components/Navbar'
 import React from 'react'
 
 const categorias = () => {
     return (
         <>
-            <p>hola</p>
+            <Navbar />
         </>
+
     )
 }
 
-export default categorias 
+export default categorias

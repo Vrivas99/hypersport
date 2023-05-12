@@ -2,9 +2,8 @@ import Link from 'next/link'
 import React from 'react'
 /* import { getItems } from '@/services/itemService' */
 
-function Listaprod({ item }) {
+export default function Listaprod({ item }) {
     return (
-
         <tr className=' border-b bg-gray-900 border-gray-700 hover:bg-gray-700 hover:text-white'>
             <th scope='row' className='px-4 py-1 font-medium text-white'>{item.id}</th>
 
@@ -19,12 +18,8 @@ function Listaprod({ item }) {
                 <Link href='#' className='cursor-pointer p-2 font-medium text-red-500 hover:underline'>ELIMINAR</Link>
             </td>
         </tr>
-
     )
 }
-
-export default Listaprod
-
 
 
 /* function Listaprod() {
