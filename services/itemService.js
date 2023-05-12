@@ -9,7 +9,7 @@ export async function getItemsINDEX(){
     // BASE DE DATOS: Esta linea usa la API para la bd (necesitas mysql)
      const request = await fetch('http://localhost:3000/api/mysql')
     const items = await request.json()
-    return getMultipleRandom(items,3);
+    return getMultipleRandom(items,8);
 }
 
 export async function getItems(){

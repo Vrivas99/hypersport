@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: mydb
+-- Host: localhost    Database: test
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -16,32 +16,26 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `comuna`
+-- Table structure for table `categoria`
 --
 
-DROP TABLE IF EXISTS `comuna`;
+DROP TABLE IF EXISTS `categoria`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `comuna` (
-  `idCOMUNA` int NOT NULL,
-  `NOMBRE` varchar(45) NOT NULL,
-  `PROVINCIA_idPROVINCIA` int NOT NULL,
-  `PROVINCIA_REGION_idREGION` int NOT NULL,
-  `PROVINCIA_idPROVINCIA1` int NOT NULL,
-  `PROVINCIA_REGION_idREGION1` int NOT NULL,
-  PRIMARY KEY (`idCOMUNA`,`PROVINCIA_idPROVINCIA`,`PROVINCIA_REGION_idREGION`,`PROVINCIA_idPROVINCIA1`,`PROVINCIA_REGION_idREGION1`),
-  KEY `fk_COMUNA_PROVINCIA1_idx` (`PROVINCIA_idPROVINCIA1`,`PROVINCIA_REGION_idREGION1`),
-  CONSTRAINT `fk_COMUNA_PROVINCIA1` FOREIGN KEY (`PROVINCIA_idPROVINCIA1`, `PROVINCIA_REGION_idREGION1`) REFERENCES `provincia` (`idPROVINCIA`, `REGION_idREGION`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+CREATE TABLE `categoria` (
+  `id` int DEFAULT NULL,
+  `nombre` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `comuna`
+-- Dumping data for table `categoria`
 --
 
-LOCK TABLES `comuna` WRITE;
-/*!40000 ALTER TABLE `comuna` DISABLE KEYS */;
-/*!40000 ALTER TABLE `comuna` ENABLE KEYS */;
+LOCK TABLES `categoria` WRITE;
+/*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
+INSERT INTO `categoria` VALUES (1,'Tennis'),(2,'Golf'),(3,'Hockey'),(4,'Volley'),(5,'Baseball'),(6,'Basquetball'),(7,'Futbol'),(8,'Bicicleta');
+/*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +47,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-03  4:18:08
+-- Dump completed on 2023-05-11 20:14:13

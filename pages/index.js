@@ -1,7 +1,7 @@
 import Catbanners from '@/components/Catbanners'
 import Navbar from '@/components/Navbar'
 import Prodcards from '@/components/Prodcards'
-import { getItemsINDEX } from '@/services/itemService'
+import { getItemsINDEX,getItems } from '@/services/itemService'
 import Footer from '@/components/footer'
 import axios from 'axios'
 
