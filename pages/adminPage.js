@@ -20,7 +20,7 @@ const adminPage = ({ items, showAs }) => {
             </button>
 
             <aside id="sidebar-multi-level-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-                <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+                <div className="h-full px-3 py-4 overflow-y-auto bg-gray-800">
                     <ul className="space-y-2 font-medium">
                         <li>
                             <a href="#" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-700">
@@ -57,7 +57,7 @@ const adminPage = ({ items, showAs }) => {
                 </div>
                 <div className="relative overflow-x-auto sm:rounded-xl">
                     <table className='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
-                        <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
+                        <thead className='text-xs text-gray-700 uppercase bg-gray-700 dark:text-gray-400'>
                             <tr>
                                 <th scope='col' className='text-white px-6 py-3'>ID</th>
 
