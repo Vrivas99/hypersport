@@ -5,27 +5,40 @@ import Sad from '../public/img/sadcartman.png'
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 
-let ovj = []
-
 export default function Carrito() {
     const cart = useAppContext()
     const [tokenResponse, setToken] = useState([]);
     const [urlResponse, setUrl] = useState([]);
+    const [tot,settot] = React.useState(0);
+
 
     const handleSubmit = async e => {
-        e.preventDefault();
+        e.preventDefault()
         console.log('posteando datos')
-        const res = await axios.post('api/webpay', {
-            buyO: "O-" + Math.floor(Math.random() * 10000) + 1,
-            sessID: "S-" + Math.floor(Math.random() * 10000) + 1,
-            amt: getTotal(),
-            retUrl: 'http://localhost:3000',
-        })
-        console.log(getTotal())
-        console.log(res.data.token)
-        console.log(res.data.url)
-        setToken(res.data.token)
-        setUrl(res.data.url)
+        //POST a WEBPAY para generar transacccion
+        const res = await axios.post('api/webpay', {buyO: "O-" + Math.floor(Math.random() * 10000) + 1, sessID: "S-" + Math.floor(Math.random() * 10000) + 1, amt: tot, retUrl: 'http://localhost:3000',})
+             .then((response) => {
+                console.log("data post:" + response);
+                console.log(response.data.token)
+                console.log(response.data.url)
+                setToken(response.data.token)
+                setUrl(response.data.url)
+                getForm(response)
+                doit()
+            },(error) =>{
+                console.log(error);
+         });
+    }
+
+    function getForm(res){
+        const web = document.getElementById("web").action = res.data.url
+        const web1 = document.getElementById("web").action
+        const web2 = document.getElementById("tok").value = res.data.token
+        const web3 = document.getElementById("web")
+        console.log(web3) 
+    }
+    function doit(){
+        const transac = document.getElementById("web").submit()
     }
 
     function handleCloseCart() {
@@ -37,6 +50,8 @@ export default function Carrito() {
     }
 
     useEffect(()=>{    
+        settot(getTotal())
+        console.log("Valorl de tot: "+ tot)
     })
     return (
         <div style={{ display: cart.isOpen ? 'block' : 'none' }} className="overflow-y-auto z-50 fixed right-0 top-0 bg-white w-screen md:w-3/6 xl:w-4/12 h-screen p-6 shadow-2xl shadow-slate-950 flex flex-col">
@@ -55,12 +70,11 @@ export default function Carrito() {
                         <div id="este" className=" w-full font-bold font-sans text-2xl flex justify-center">
                             Total: ${getTotal()}
                         </div>
-                        <form onSubmit={handleSubmit}>
-                            <button className=" w-72 flex justify-center cursor-pointer bg-green-600 hover:bg-green-900 text-white px-6 py-2 rounded-md font-sans" >Apretar este primero</button>
+                        <form id="hola" onSubmit={handleSubmit}>
+                            <button className=" w-72 flex justify-center cursor-pointer bg-green-600 hover:bg-green-900 text-white px-6 py-2 rounded-md font-sans" >Cancelar Compra</button>
                         </form>
                         <form id="web" action={urlResponse} method="POST">
-                            <input type="hidden" name="token_ws" value={tokenResponse} />
-                            <input type="submit" value="Apretar este despues" className=" w-72 flex justify-center cursor-pointer bg-green-600 hover:bg-green-900 text-white px-6 py-2 rounded-md font-sans" />
+                            <input id="tok" type="hidden" name="token_ws" value={tokenResponse} />
                         </form>
                     </div>
                 </div>}

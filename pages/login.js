@@ -2,10 +2,21 @@ import React from 'react'
 import Logo from '../public/img/fondoanime.jpg'
 import Image from 'next/image'
 import Link from 'next/link';
-
-
+import axios from 'axios';
+/* import probando from '../pages/api/mysql/probando' */
 const errorMessage = {
     message: 'Falta ingreso de datos aqui'
+}
+
+async function hola(){
+    try{
+        const ax = await axios.get('api/mysql/probando?ID=1')
+        for (let index = 0; index < ax.data.length; index++) {
+            console.log(ax.data[index])   
+        }
+    }catch(error){
+        console.log(error)
+    }
 }
 
 const Login = () => {
@@ -23,7 +34,8 @@ const Login = () => {
                 </div>
                 <div className='w-full h-auto'>
                     <h1 className='text-xl md:text-2x1  font-bold leanding-tight mt-12'>Inicia sesion con tu cuenta</h1>
-                    {/* Formulario */}
+                    {/* Formulario */}  
+                    <div><button className= 'w-full block bg-green-500' onClick={hola}>dame usuarios</button></div>
                     <form  /* onSubmit={handleSumbit()} */ className='mt-6' action='#' method='POST'>
                         <div>
                             <label className='block text-gray-700'>Correo electronico</label>

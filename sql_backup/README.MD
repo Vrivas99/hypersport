@@ -8,7 +8,8 @@ Siempre importar la ultima version disponible (indicada con flecha)
 +----Nuevo_SCHEMA_'test'_base_de_datos----+
 | |DUMP V3|    [20230505] - $05-05-2023$  |
 | |DUMP V3|    [20230506] - $07-05-2023$  |
-| |DUMP V4| -> [20230508] - $08-05-2023$  |
+| |DUMP V4|    [20230508] - $08-05-2023$  |
+| |DUMP V5| -> [20230511] - $11-05-2023$  |
 +-----------------------------------------+
 
 `Para crear la nueva base de datos`
