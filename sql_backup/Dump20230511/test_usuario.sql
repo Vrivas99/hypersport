@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: mydb
+-- Host: localhost    Database: test
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -16,33 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `producto`
+-- Table structure for table `usuario`
 --
 
-DROP TABLE IF EXISTS `producto`;
+DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `producto` (
-  `idPRODUCTO` int NOT NULL,
-  `NOMBRE` varchar(45) NOT NULL,
-  `DESCRIPCION` varchar(100) DEFAULT NULL,
-  `PRECIO` int NOT NULL,
-  `CANTIDAD` int NOT NULL,
-  `MARCA_idMARCA` int NOT NULL,
-  PRIMARY KEY (`idPRODUCTO`,`MARCA_idMARCA`),
-  KEY `fk_PRODUCTO_MARCA1_idx` (`MARCA_idMARCA`),
-  CONSTRAINT `fk_PRODUCTO_MARCA1` FOREIGN KEY (`MARCA_idMARCA`) REFERENCES `marca` (`idMARCA`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+CREATE TABLE `usuario` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `CORREO` varchar(200) DEFAULT NULL,
+  `CONTRASENNA` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `producto`
+-- Dumping data for table `usuario`
 --
 
-LOCK TABLES `producto` WRITE;
-/*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (1,'PRUEBA','Producto de prueba',1000,20,1),(2,'PRUEBA2','Producto de prueba2',5000,20,1),(3,'PRUEBA3','Producto de prueba3',555,1,2);
-/*!40000 ALTER TABLE `producto` ENABLE KEYS */;
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'ADMIN','123');
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-21 16:26:33
+-- Dump completed on 2023-05-11 20:14:13
