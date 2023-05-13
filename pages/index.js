@@ -1,12 +1,13 @@
 import Catbanners from '@/components/Catbanners'
 import Navbar from '@/components/Navbar'
 import Prodcards from '@/components/Prodcards'
-import { getItemsINDEX,getItems } from '@/services/itemService'
+import { getItemsINDEX } from '@/services/itemService'
 import Footer from '@/components/footer'
-import axios from 'axios'
+
 
 
 export default function Home({ items }) {
+
   return (
     <div>
       <Navbar />
@@ -16,7 +17,9 @@ export default function Home({ items }) {
           <Prodcards key={item.id} item={item} showAs='default' />
         ))}
       </div>
-      <Footer />
+      <div className=' bottom-0'>
+        <Footer />
+      </div>
     </div>
   )
 }
