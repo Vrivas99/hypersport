@@ -3,15 +3,15 @@ import { pool } from '../../../config/db'
 export default async function handler(req, res) {
     switch (req.method) {
         case 'GET':
-            return await recuperarProducto(req,res)
+            return await recuperarProducto(req, res)
         case 'POST':
-            return await guardarProducto(req,res)
+            return await guardarProducto(req, res)
 
     }
 }
 
-const recuperarProducto = async(req,res) =>{
-    const [result] = await pool.query('SELECT t1.id,t1.title,t2.nombre as categoria,t1.Descu,t1.descripcion,t1.price,t1.cantidad,t1.originalPrice,t1.img from producto as t1 JOIN CATEGORIA as t2 on t1.idcategoria = t2.id where t1.title IS NOT NULL AND t1.id > 6')
+const recuperarProducto = async (req, res) => {
+    const [result] = await pool.query('SELECT t1.id,t1.title,t2.nombre as categoria,t1.Descu,t1.descripcion,t1.price,t1.cantidad,t1.originalPrice,t1.img,t1.idcategoria,t1.marca from producto as t1 JOIN CATEGORIA as t2 on t1.idcategoria = t2.id where t1.title IS NOT NULL AND t1.id > 6')
     const resultStringify = JSON.stringify(result)
     const resultParse = JSON.parse(resultStringify)
     //-----------------------------------------------------------------
