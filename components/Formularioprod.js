@@ -32,7 +32,7 @@ function Formularioprod({ data }) {
                         <div className='relative'>
                             <p class="text-red-500 text-xs italic absolute -left-2 -top-1">*</p>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-nombre">Descripcion</label>
-                            <textarea defaultValue={data[2]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type='Text' placeholder="Ingrese detalles o datos del producto" cols="30" rows="10" required></textarea>
+                            <textarea defaultValue={data[2]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type='Text' placeholder="Ingrese detalles o datos del producto" cols="20" rows="5" required></textarea>
                         </div>
                     </div>
                     <div class="w-full px-3">
@@ -63,20 +63,20 @@ function Formularioprod({ data }) {
                         <div className='relative'>
                             <p class="text-red-500 text-xs italic absolute -left-2 -top-1">*</p>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-precio">Precio</label>
-                            <input defaultValue={data[3]} class="appearance-none block w-full bg-gray-200 text-gray-400 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-precio" type="number" placeholder="3550" required></input>
+                            <input defaultValue={data[3]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-precio" type="number" placeholder="3550" required></input>
                         </div>
                     </div>
                     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                         <div className='relative'>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-descuento">Descuento</label>
-                            <input defaultValue={data[4]} class="appearance-none block w-full bg-gray-200 text-gray-400 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-descuento" type="number" placeholder="0"></input>
+                            <input defaultValue={data[4]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-descuento" type="number" placeholder="0"></input>
                         </div>
                     </div>
                     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                         <div className='relative'>
                             <p class="text-red-500 text-xs italic absolute -left-2 -top-1">*</p>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-stock">Stock</label>
-                            <input defaultValue={data[5]} class="appearance-none block w-full bg-gray-200 text-gray-400 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-stock" type="number" placeholder="25" required></input>
+                            <input defaultValue={data[5]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-stock" type="number" placeholder="25" required></input>
                         </div>
                     </div>
                 </div>

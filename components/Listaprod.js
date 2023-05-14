@@ -15,11 +15,11 @@ export default function Listaprod({ item }) {
 
     return (
         <tr className=' border-b bg-gray-900 border-gray-700 hover:bg-gray-700 hover:text-white'>
-            <th scope='row' className='px-4 py-1 font-medium text-white'>{item.id}</th>
+            <th scope='row' className='px-4 py-1 font-medium text-white text-center'>{item.id}</th>
 
             <td scope='row' className='px-4 py-1 font-medium text-white'>{item.title}</td>
 
-            <td scope='row' className='px-4 py-1'>{item.price}</td>
+            <td scope='row' className='px-4 py-1 text-end'>{item.price}$</td>
 
             <td scope='row' className='px-4 py-1'>{item.descripcion}</td>
 
