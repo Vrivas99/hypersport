@@ -9,7 +9,6 @@ function Formularioprod({ data }) {
         const ab = await axios.patch('', {})
     }
     console.log(data)
-    const cat = data[6]
     return (
         <div>
             <form action="POST" className='w-full max-w-lg"'>
@@ -41,7 +40,7 @@ function Formularioprod({ data }) {
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-categoria">Categoria</label>
                         </div>
                         <div class="relative">
-                            <select defaultValue={cat} class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                            <select defaultValue={data[6]} class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                                 <option>Futbol</option>
                                 <option>Tennis</option>
                                 <option>Basquetball</option>
