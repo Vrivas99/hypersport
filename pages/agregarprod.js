@@ -1,23 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import Formularioprod from '@/components/Formularioprod';
-import LeftAside from '@/components/LeftAside';
-
-const adminPage = () => {
-    const router = useRouter();
-    const query = router.query;
-    const ab = [query.id,
-    query.titulo,
-    query.descripcion,
-    query.precio,
-    query.descu,
-    query.stock,
-    query.categoria,
-    query.img]
-    console.log(ab)
-    return (
-        <div className="bg-gray-900 antialiased h-screen">
+import Formularioagregarprod from '@/components/Formularioagregarprod'
+import LeftAside from '@/components/LeftAside'
+const agregarprod = () => {
+  return (
+    <div className="bg-gray-900 antialiased h-screen">
             <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                 <span className="sr-only">Open sidebar</span>
                 <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -26,12 +13,12 @@ const adminPage = () => {
             </button>
 
             <LeftAside/>
-            
+
             <div className="p-4 sm:ml-64 h-screen flex flex-col justify-center items-center">
-                <Formularioprod data={ab}></Formularioprod>
+                <Formularioagregarprod/>
             </div>
         </div>
-    )
+  )
 }
 
-export default adminPage
+export default agregarprod

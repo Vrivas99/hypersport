@@ -1,40 +1,52 @@
+import axios from 'axios'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 /* import { getItems } from '@/services/itemService' */
 
 export default function Listaprod({ item }) {
-    function lockData(e){
+    function lockData(e) {
         var ide = item.id
         var tit = item.title
-        var pre = item.price
+        var pre = item.originalPrice
         const undersc = "\n----------------------------"
-        console.log(`${undersc}\nID: ` + ide,"\nTIT: " + tit,"\nPRE: " +pre+`${undersc}`)
+        console.log(`${undersc}\nID: ` + ide, "\nTIT: " + tit, "\nPRE: " + pre + `${undersc}`)
     }
+    
+    async function eliminarValor() {
+        const element = await axios.post('api/mysql/eliminar', { ID: item.id});
+        console.log('se elimino: ' + item.id)
+    }
+
+
+
     useEffect(() => {
-    },[])
+    }, [])
 
     return (
         <tr className=' border-b bg-gray-900 border-gray-700 hover:bg-gray-700 hover:text-white'>
-            <th scope='row' className='px-4 py-1 font-medium text-white'>{item.id}</th>
+            <th scope='row' className='px-4 py-1 font-medium text-white text-center'>{item.id}</th>
 
             <td scope='row' className='px-4 py-1 font-medium text-white'>{item.title}</td>
 
-            <td scope='row' className='px-4 py-1'>{item.price}</td>
+            <td scope='row' className='px-4 py-1 text-end'>{item.originalPrice}$</td>
 
             <td scope='row' className='px-4 py-1'>{item.descripcion}</td>
-            
+
             <td className='px-6 py-4'>
                 <Link onClick={lockData} href={{
-                             query: {id: item.id,
-                                     titulo: item.title,
-                                     descripcion: item.descripcion,
-                                     precio: item.originalPrice,
-                                     descu: item.descu,
-                                     stock: item.cantidad,
-                                     categoria: item.categoria}, pathname:'/modifprod',
-                            }}
-                 className='cursor-pointer p-2 font-medium text-blue-600 hover:underline'>MODIFICAR</Link>
-                <Link href='#' className='cursor-pointer p-2 font-medium text-red-500 hover:underline'>ELIMINAR</Link>
+                    query: {
+                        id: item.id,
+                        titulo: item.title,
+                        descripcion: item.descripcion,
+                        precio: item.originalPrice,
+                        descu: item.descu,
+                        stock: item.cantidad,
+                        categoria: item.categoria,
+                        img: item.img
+                    }, pathname: '/modifprod',
+                }}
+                    className='cursor-pointer p-2 font-medium text-blue-600 hover:underline'>MODIFICAR</Link>
+                <Link onClick={eliminarValor} href='/adminPage' className='cursor-pointer p-2 font-medium text-red-500 hover:underline'>ELIMINAR</Link>
             </td>
         </tr>
     )

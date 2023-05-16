@@ -17,26 +17,28 @@ const logout = () => {
 };
 
 
-async function hola(){
+async function hola() {
     try {
-        const ax = await axios.get('api/mysql/probando?'); // conexion api mysql
-        const data = ax.data; // se pasa a la variable 'data' los datos de mysql
-        const correoForm = document.getElementById("logcorreo").value; // recupera el dato del campo 'correo electronico'
-        const contraForm = document.getElementById("logcontra").value; // recupera el dato del campo 'contrasenna'
-        console.log('Element correo: ' + correoForm + ', contraseña: ' + contraForm); // muestra input correo y contrasena
-        
-        for (let i = 0; i < data.length; i++) {
-          const correoData = data[i].CORREO; // pasa los datos de la variable correo a una variable llamada correo
-          const contraData = data[i].CONTRASENNA; // pasa los datos de la variable correo a una variable llamada correo
-
-            if (correoForm.toLowerCase() == correoData.toLowerCase()) // variables string a LoweCase para comparar mejor
-                console.log('Correo encontrado en la mase de datos: ' + correoData);
-                    if (contraForm == contraData) // Verificar contrasenna
-                        console.log('Contraseña encontrada en la mase de datos: ' + contraData);
+        const ax = await axios.get('api/mysql/probando?ID=1')
+        const bx = ax.data
+        console.log('Este es el html element: ' + document.getElementById('mail').value)
+        const corr = document.getElementById('mail').value
+        const contr = document.getElementById('passw').value
+        for (let index = 0; index < bx.length; index++) {
+            const correoData = bx[index].CORREO;
+            const ccontraData = bx[index].CONTRASENNA;
+            if (corr == correoData && contr == ccontraData) {
+                console.log('Usuario autentificado')
+                console.log('User:' + bx[index].CORREO)
+                console.log('Pass:' + bx[index].CONTRASENNA)
+                break
+            } else {
+                continue
+            }
         }
-      } catch (error) {
+    } catch (error) {
         console.log(error);
-      }
+    }
 }
 
 const Login = () => {
@@ -54,13 +56,12 @@ const Login = () => {
                 </div>
                 <div className='w-full h-auto'>
                     <h1 className='text-xl md:text-2x1  font-bold leanding-tight mt-12'>Inicia sesion con tu cuenta</h1>
-                    {/* Formulario */}  
-                    <div><button className= 'w-full block bg-green-500' onClick={hola}>dame usuarios</button></div>
-                    <div><button className= 'w-full block bg-purple-500' onClick={logout}>cerrar sesion</button></div>
-                    <form className='mt-6' action='#' method='POST'>
+                    {/* Formulario */}
+                    {/*           <div><button className= 'w-full block bg-green-500' onClick={hola}>dame usuarios</button></div>*/}
+                    <form  /* onSubmit={handleSumbit()} */ action='/' className='mt-6'>
                         <div>
                             <label className='block text-gray-700'>Correo electronico</label>
-                            <input id="logcorreo" type='email' placeholder='Ingresa tu correo electronico'
+                            <input id="mail" type='email' placeholder='Ingresa tu correo electronico'
                                 className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2'
                                 autoComplete='true' autoFocus required
                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
@@ -69,7 +70,7 @@ const Login = () => {
                         </div>
                         <div className='mt-4'>
                             <label className='block text-gray-700'>Contraseña</label>
-                            <input id='logcontra' type='password' minLength="6"
+                            <input id='passw' type='password' minLength="6"
                                 placeholder='Ingresa tu contrasena'
                                 className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2'
                                 required autoComplete='true'></input>
@@ -77,7 +78,7 @@ const Login = () => {
                         <div className='text-right mt-2'>
                             <Link href='resetPassword' className='text-sm font-semibold text-gray-700 hover:text-purple-600'>Olvidaste tu contraseña?</Link>
                         </div>
-                        <button className='w-full block bg-purple-500 hover:bg-purple-400 px-4 py-3 mt-6 rounded-lg font-semibold text-white focus:bg-purple-400' type="submit">Ingresar</button>
+                        <button onClick={hola} className='w-full block bg-purple-500 hover:bg-purple-400 px-4 py-3 mt-6 rounded-lg font-semibold text-white focus:bg-purple-400' type="submit" href="/">Ingresar</button>
                         <hr className='my-6 border-gray-300 w-full'></hr>
                         <div className='text-center mt-2'>
                             <Link href='registro' className='text-sm font-semibold text-gray-700 hover:text-purple-600'>¿No tienes cuenta? Registrate Aqui!</Link>

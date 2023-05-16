@@ -6,40 +6,28 @@ const Navlinks = () => {
         {
             name: 'Deportes', submenu: true, sublink: [{
                 sublink: [
-                    { name: 'Futbol', link: '/login' },
-                    { name: 'Tenis', link: '/' },
-                    { name: 'Basquetbol', link: '/' },
-                    { name: 'Voleibol', link: '/' },
-                    { name: 'Golf', link: '/' },
-                    { name: 'Hockey', link: '/' },
-                    { name: 'Ciclismo', link: '/' },
-                    { name: 'Baseball', link: '/' },
+                    { name: 'Futbol', link: '/pagesCat/futbol' },
+                    { name: 'Tenis', link: '/pagesCat/tenis' },
+                    { name: 'Basquetbol', link: '/pagesCat/basquet' },
+                    { name: 'Voleibol', link: '/pagesCat/volei' },
+                    { name: 'Golf', link: '/pagesCat/golf' },
+                    { name: 'Hockey', link: '/pagesCat/hockey' },
+                    { name: 'Ciclismo', link: '/pagesCat/ciclismo' },
+                    { name: 'Baseball', link: '/pagesCat/baseball' },
                 ]
 
             }]
         },
-        {
-            name: 'Vestuario', submenu: true, sublink: [{
-                sublink: [
-                    { name: 'Poleras', link: '/' },
-                    { name: 'Guantes', link: '/' },
-                    { name: 'Short', link: '/' },
-                    { name: 'Zapatillas', link: '/' },
-                    { name: 'Pantalones', link: '/' },
-                    { name: 'Gorras', link: '/' },
-                ]
-            }]
-        },
-        {
+/*         {
             name: 'Otros', submenu: true, sublink: [{
                 sublink: [
                     { name: 'Articulos Deportivos', link: '/' },
                     { name: 'Accesorios', link: '/' },
                 ]
             }]
-        }]
+        } */]
     const [sblink, setSblink] = useState('')
-    
+
     return <>
         {links.map(link => (
             <div key={link.name}>
@@ -60,14 +48,14 @@ const Navlinks = () => {
                             </div>
                             <div className='bg-black p-7 rounded-md'>
                                 {
-                                link.sublink.map((mysublinks) => (
-                                    <div key={mysublinks.sublink}>
-                                        {mysublinks.sublink.map((slink) => (
-                                            <li key={slink.name} className='text-sm text-gray-300 my-4'>
-                                                <Link href={slink.link} className='hover:text-purple-600'>{slink.name}</Link>
-                                            </li>
-                                        ))}
-                                    </div>))
+                                    link.sublink.map((mysublinks) => (
+                                        <div key={mysublinks.sublink}>
+                                            {mysublinks.sublink.map((slink) => (
+                                                <li key={slink.name} className='text-sm text-gray-300 my-4'>
+                                                    <Link href={slink.link} className='hover:text-purple-600'>{slink.name}</Link>
+                                                </li>
+                                            ))}
+                                        </div>))
                                 }
                             </div>
                         </div>

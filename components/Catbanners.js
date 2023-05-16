@@ -7,16 +7,16 @@ import Link from 'next/link'
 const Catbanners = () => {
     return (
         <div className='flex flex-wrap justify-center h'>
-            <Link className="justify-center flex w-1/2 md:w-80 md:h-80 overflow-hidden" href=''>
+            <Link className="justify-center flex w-1/2 md:w-80 md:h-80 overflow-hidden" href='/pagesCat/ciclismo'>
                 <Image className="object-scale-down scale-90 hover:scale-100 ease-in duration-500" src={Bici} alt='Imagen Prod'></Image>
             </Link>
-            <Link className="justify-center flex w-1/2 md:w-80 md:h-80 overflow-hidden" href=''>
+            <Link className="justify-center flex w-1/2 md:w-80 md:h-80 overflow-hidden" href='/pagesCat/basquet'>
                 <Image className="object-scale-down scale-90 hover:scale-100 ease-in duration-500" src={Basquet} alt='Imagen Prod'></Image>
             </Link>
-            <Link className="justify-center flex w-1/2 md:w-80 md:h-80 overflow-hidden" href=''>
+            <Link className="justify-center flex w-1/2 md:w-80 md:h-80 overflow-hidden" href='/pagesCat/futbol'>
                 <Image className="object-scale-down scale-90 hover:scale-100 ease-in duration-500" priority src={Futbol} alt='Imagen Prod'></Image>
             </Link>
-            <Link className="justify-center flex w-1/2 md:w-80 md:h-80 overflow-hidden" href=''>
+            <Link className="justify-center flex w-1/2 md:w-80 md:h-80 overflow-hidden" href='/pagesCat/volei'>
                 <Image className="object-scale-down scale-90 hover:scale-100 ease-in duration-500" src={Volei} alt='Imagen Prod'></Image>
             </Link>
         </div>
