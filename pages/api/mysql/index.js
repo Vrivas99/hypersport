@@ -6,7 +6,7 @@ export default async function handler(req, res) {
             return await recuperarProducto(req, res)
         case 'POST':
             return await guardarProducto(req, res)
-        case 'PATCH':
+        case 'PUT':
             return await modificarProducto(req,res)
 
     }
@@ -56,7 +56,21 @@ const modificarProducto = async (req,res) =>{
     console.log('Modificando un producto');
     console.log('xxxxxxxxxxxxxxxxxxxxx');
     console.log(req.body);
-    const {aide} = req.body
-    const [result] = await pool.query(`UPDATE PRODUCTO SET title = 'lo logre' WHERE id = ?`,{id: Number(aide)});
+    const{id,product} =req.body;
+    console.log('--'+id)
+    console.log(product.titulo)
+    const [result] = await pool.query(`UPDATE PRODUCTO SET 
+    title = ?, 
+    img = ?, 
+    Descu = ?, 
+    descripcion = ?,
+    originalPrice = ?, 
+    cantidad = ?, 
+    idcategoria = ?
+     WHERE id = ?`,
+     [product.titulo,product.img,
+        product.descuento,product.descripcion,product.price,
+    product.cantidad,product.categoria,id]);
     return res.status(200).json('hacciendo patch')
+    
 }

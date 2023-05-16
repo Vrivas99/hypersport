@@ -4,19 +4,37 @@ import React, { useState } from 'react'
 
 function Formularioprod({ data }) {
     const [ide, setID] = useState('');
+    const [product,setProd] = useState({
+        titulo: '',
+        descripcion: '',
+        img:'',
+        descuento:'',
+        price:'',
+        cantidad:'',
+        categoria:'',
+    });
     const val = data[0]
-    //aca tenemos que hacer el PATCH - mña jspablo
 
-    async function handlePatch(){
-        const id = val
-        const res = await axios.post('api/mysql/agregar', { aide: id});
+    async function handlePatch(e){
+        e.preventDefault()
+        console.log(product)
+        const id = ide
+        const res = await axios.put('api/mysql',{id,product});
     }
     function lockdata(){
         console.log('valor: ' +val)
         setID(val)
+        setProd({        
+            titulo: document.getElementById(1).value,
+            descripcion: document.getElementById(3).value,
+            img:document.getElementById(2).value,
+            descuento:document.getElementById(5).value,
+            price:document.getElementById(4).value,
+            cantidad:document.getElementById(6).value,
+            categoria:1,
+        })
     }
 
-    console.log(data)
     return (
         <div>
             <form onSubmit={handlePatch} className='w-full max-w-lg"'>
@@ -25,21 +43,21 @@ function Formularioprod({ data }) {
                         <div className='relative'>
                             <p class="text-red-500 text-xs italic absolute -left-2 -top-1">*</p>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-nombre">Nombre Producto</label>
-                            <input defaultValue={data[1]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" placeholder="Balon de Futbol" required></input>
+                            <input id='1' defaultValue={data[1]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  placeholder="Balon de Futbol" required></input>
                         </div>
                     </div>
                     <div class="w-full px-3">
                         <div className='relative'>
                             <p class="text-red-500 text-xs italic absolute -left-2 -top-1">*</p>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-nombre">Url Imagen</label>
-                            <input defaultValue={data[7]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" placeholder="Balon de Futbol" required></input>
+                            <input id='2' defaultValue={data[7]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Balon de Futbol" required></input>
                         </div>
                     </div>
                     <div class="w-full px-3">
                         <div className='relative'>
                             <p class="text-red-500 text-xs italic absolute -left-2 -top-1">*</p>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-nombre">Descripcion</label>
-                            <textarea defaultValue={data[2]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type='Text' placeholder="Ingrese detalles o datos del producto" cols="20" rows="5" required></textarea>
+                            <textarea id='3' defaultValue={data[2]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type='Text' placeholder="Ingrese detalles o datos del producto" cols="20" rows="5" required></textarea>
                         </div>
                     </div>
                     <div class="w-full px-3">
@@ -48,7 +66,7 @@ function Formularioprod({ data }) {
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-categoria">Categoria</label>
                         </div>
                         <div class="relative">
-                            <select defaultValue={data[6]} class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                            <select defaultValue={data[6]} class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" >
                                 <option>Futbol</option>
                                 <option>Tennis</option>
                                 <option>Basquetball</option>
@@ -70,20 +88,20 @@ function Formularioprod({ data }) {
                         <div className='relative'>
                             <p class="text-red-500 text-xs italic absolute -left-2 -top-1">*</p>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-precio">Precio</label>
-                            <input defaultValue={data[3]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-precio" type="number" placeholder="3550" required></input>
+                            <input id='4' defaultValue={data[3]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="number" placeholder="3550" required></input>
                         </div>
                     </div>
                     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                         <div className='relative'>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-descuento">Descuento</label>
-                            <input defaultValue={data[4]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-descuento" type="number" placeholder="0"></input>
+                            <input id='5' defaultValue={data[4]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="number" placeholder="0"></input>
                         </div>
                     </div>
                     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                         <div className='relative'>
                             <p class="text-red-500 text-xs italic absolute -left-2 -top-1">*</p>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-stock">Stock</label>
-                            <input defaultValue={data[5]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-stock" type="number" placeholder="25" required></input>
+                            <input id='6' defaultValue={data[5]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="number" placeholder="25" required></input>
                         </div>
                     </div>
                     <div className='items-center'>
