@@ -3,11 +3,19 @@ import Logo from '../public/img/fondoanime.jpg'
 import Image from 'next/image'
 import Link from 'next/link';
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import Router from 'next/router';
 
 /* import probando from '../pages/api/mysql/probando' */
 const errorMessage = {
     message: 'Falta ingreso de datos aqui'
 }
+
+const logout = () => {
+    Cookies.remove('loggedin');
+    Router.push('/') // cambiar el router por 
+};
+
 
 async function hola(){
     try {
@@ -48,6 +56,7 @@ const Login = () => {
                     <h1 className='text-xl md:text-2x1  font-bold leanding-tight mt-12'>Inicia sesion con tu cuenta</h1>
                     {/* Formulario */}  
                     <div><button className= 'w-full block bg-green-500' onClick={hola}>dame usuarios</button></div>
+                    <div><button className= 'w-full block bg-purple-500' onClick={logout}>cerrar sesion</button></div>
                     <form className='mt-6' action='#' method='POST'>
                         <div>
                             <label className='block text-gray-700'>Correo electronico</label>

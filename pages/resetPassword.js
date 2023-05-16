@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar'
 import React from 'react'
 import Link from 'next/link';
 
+
 const errorMessage = {
     message: 'Falta ingreso de datos aqui'
 }
