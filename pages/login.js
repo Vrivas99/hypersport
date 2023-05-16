@@ -3,6 +3,7 @@ import Logo from '../public/img/fondoanime.jpg'
 import Image from 'next/image'
 import Link from 'next/link';
 import axios from 'axios';
+
 /* import probando from '../pages/api/mysql/probando' */
 const errorMessage = {
     message: 'Falta ingreso de datos aqui'
@@ -27,9 +28,9 @@ async function hola(){
                 continue
             } 
         }
-    }catch(error){
-        console.log(error)
-    }
+      } catch (error) {
+        console.log(error);
+      }
 }
 
 const Login = () => {
@@ -67,7 +68,7 @@ const Login = () => {
                                 required autoComplete='true'></input>
                         </div>
                         <div className='text-right mt-2'>
-                            <Link href='#' className='text-sm font-semibold text-gray-700 hover:text-purple-600'>Olvidaste tu contraseña?</Link>
+                            <Link href='resetPassword' className='text-sm font-semibold text-gray-700 hover:text-purple-600'>Olvidaste tu contraseña?</Link>
                         </div>
                         <button onClick={hola} className='w-full block bg-purple-500 hover:bg-purple-400 px-4 py-3 mt-6 rounded-lg font-semibold text-white focus:bg-purple-400' type="submit" href="/">Ingresar</button>
                         <hr className='my-6 border-gray-300 w-full'></hr>
