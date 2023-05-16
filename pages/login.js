@@ -11,8 +11,16 @@ const errorMessage = {
 async function hola(){
     try{
         const ax = await axios.get('api/mysql/probando?ID=1')
-        for (let index = 0; index < ax.data.length; index++) {
-            console.log(ax.data[index])   
+        const bx = ax.data
+        console.log( 'Este es el html element: '+ document.getElementById('mail').value)
+        
+        for (let index = 0; index < bx; index++){
+            console.log(bx[index])
+            if (document.getElementById('mail').value == ax.data.correo) {
+                console.log(ax.data[index])   
+            } else {
+                console.log('no esta')
+            } 
         }
     }catch(error){
         console.log(error)
@@ -39,7 +47,7 @@ const Login = () => {
                     <form  /* onSubmit={handleSumbit()} */ className='mt-6' action='#' method='POST'>
                         <div>
                             <label className='block text-gray-700'>Correo electronico</label>
-                            <input type='email' placeholder='Ingresa tu correo electronico'
+                            <input id ="mail" type='email' placeholder='Ingresa tu correo electronico'
                                 className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2'
                                 autoComplete='true' autoFocus required
                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">

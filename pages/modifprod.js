@@ -29,10 +29,6 @@ const adminPage = () => {
             
             <div className="p-4 sm:ml-64 h-screen flex flex-col justify-center items-center">
                 <Formularioprod data={ab}></Formularioprod>
-                <div className='items-center'>
-                    <Link href="/adminPage" className='mt-10 mr-3 flex float-left justify-center cursor-pointer bg-red-600 hover:bg-red-900 text-white px-6 py-2 rounded-md font-sans' type='submite'>Volver</Link>
-                    <button className='mt-10 ml3 flex float-right justify-center cursor-pointer bg-green-600 hover:bg-green-900 text-white px-6 py-2 rounded-md font-sans' type='submite'>Guardar</button>
-                </div>
             </div>
         </div>
     )

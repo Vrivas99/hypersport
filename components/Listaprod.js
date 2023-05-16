@@ -1,3 +1,4 @@
+import axios from 'axios'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 /* import { getItems } from '@/services/itemService' */
@@ -6,10 +7,18 @@ export default function Listaprod({ item }) {
     function lockData(e) {
         var ide = item.id
         var tit = item.title
-        var pre = item.price
+        var pre = item.originalPrice
         const undersc = "\n----------------------------"
         console.log(`${undersc}\nID: ` + ide, "\nTIT: " + tit, "\nPRE: " + pre + `${undersc}`)
     }
+    
+    async function eliminarValor() {
+        const element = await axios.post('api/mysql/eliminar', { ID: item.id});
+        console.log('se elimino: ' + item.id)
+    }
+
+
+
     useEffect(() => {
     }, [])
 
@@ -19,7 +28,7 @@ export default function Listaprod({ item }) {
 
             <td scope='row' className='px-4 py-1 font-medium text-white'>{item.title}</td>
 
-            <td scope='row' className='px-4 py-1 text-end'>{item.price}$</td>
+            <td scope='row' className='px-4 py-1 text-end'>{item.originalPrice}$</td>
 
             <td scope='row' className='px-4 py-1'>{item.descripcion}</td>
 
@@ -37,7 +46,7 @@ export default function Listaprod({ item }) {
                     }, pathname: '/modifprod',
                 }}
                     className='cursor-pointer p-2 font-medium text-blue-600 hover:underline'>MODIFICAR</Link>
-                <Link href='#' className='cursor-pointer p-2 font-medium text-red-500 hover:underline'>ELIMINAR</Link>
+                <Link onClick={eliminarValor} href='/adminPage' className='cursor-pointer p-2 font-medium text-red-500 hover:underline'>ELIMINAR</Link>
             </td>
         </tr>
     )

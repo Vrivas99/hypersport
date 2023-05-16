@@ -6,6 +6,8 @@ export default async function handler(req, res) {
             return await recuperarProducto(req, res)
         case 'POST':
             return await guardarProducto(req, res)
+        case 'PATCH':
+            return await modificarProducto(req,res)
 
     }
 }
@@ -33,16 +35,28 @@ const guardarProducto = async (req, res) => {
     console.log('xxxxxxxxxxxxxxxxxxxxx');
     console.log(req.body);
     //guardar parametros del request POST en una constante
-    const { NOMBRE, DESCRIPCION, PRECIO, CANTIDAD, MARCA_idMARCA } = req.body
+    const {nombre,img,descu,descri,prices,cantidad,marca,categoria} = req.body
     //llamo una query y le paso en el SET la serie de parametros del request
-    const [result] = await pool.query('INSERT INTO PRODUCTOS SET ?', {
+    const [result] = await pool.query('INSERT INTO PRODUCTO SET ?', {
         //idPRODUCTO: Math.floor(Math.random() * 10000) + 1,
-        NOMBRE,
-        DESCRIPCION,
-        PRECIO,
-        CANTIDAD,
-        MARCA_idMARCA,
+        title: nombre,
+        img: img,
+        Descu: descu,
+        descripcion: descri,
+        originalPrice: prices,
+        cantidad: cantidad,
+        marca: marca,
+        idcategoria: categoria
     });
 
-    return res.statsu(200).json('haciendo post')
+    return res.status(200).json('haciendo post')
+}
+
+const modificarProducto = async (req,res) =>{
+    console.log('Modificando un producto');
+    console.log('xxxxxxxxxxxxxxxxxxxxx');
+    console.log(req.body);
+    const {aide} = req.body
+    const [result] = await pool.query(`UPDATE PRODUCTO SET title = 'lo logre' WHERE id = ?`,{id: Number(aide)});
+    return res.status(200).json('hacciendo patch')
 }

@@ -3,7 +3,7 @@ import React from 'react'
 const Formarioagregarusuario = () => {
   return (
     <div>
-            <form action="POST" className='w-full max-w-lg"'>
+            <form onSubmit={agregarValor} action="POST" className='w-full max-w-lg"'>
                 <div className="flex flex-wrap -mx-3 mb-6">
 
                     <div className="w-full px-3">

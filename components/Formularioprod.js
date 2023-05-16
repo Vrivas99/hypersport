@@ -1,17 +1,25 @@
 import axios from 'axios'
-import React from 'react'
+import Link from 'next/link'
+import React, { useState } from 'react'
 
 function Formularioprod({ data }) {
-
+    const [ide, setID] = useState('');
+    const val = data[0]
     //aca tenemos que hacer el PATCH - mña jspablo
-    async function makePUT(event) {
-        event.prevenDefault()
-        const ab = await axios.patch('', {})
+
+    async function handlePatch(){
+        const id = val
+        const res = await axios.post('api/mysql/agregar', { aide: id});
     }
+    function lockdata(){
+        console.log('valor: ' +val)
+        setID(val)
+    }
+
     console.log(data)
     return (
         <div>
-            <form action="POST" className='w-full max-w-lg"'>
+            <form onSubmit={handlePatch} className='w-full max-w-lg"'>
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full px-3">
                         <div className='relative'>
@@ -77,6 +85,10 @@ function Formularioprod({ data }) {
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-stock">Stock</label>
                             <input defaultValue={data[5]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-stock" type="number" placeholder="25" required></input>
                         </div>
+                    </div>
+                    <div className='items-center'>
+                        <Link href="/adminPage" className='mt-10 mr-3 flex float-left justify-center cursor-pointer bg-red-600 hover:bg-red-900 text-white px-6 py-2 rounded-md font-sans' type='submite'>Volver</Link>
+                        <button onClick={lockdata} className='mt-10 ml3 flex float-right justify-center cursor-pointer bg-green-600 hover:bg-green-900 text-white px-6 py-2 rounded-md font-sans' type='submite'>Guardar</button>
                     </div>
                 </div>
             </form>
