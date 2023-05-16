@@ -3,20 +3,32 @@ import Logo from '../public/img/fondoanime.jpg'
 import Image from 'next/image'
 import Link from 'next/link';
 import axios from 'axios';
+
 /* import probando from '../pages/api/mysql/probando' */
 const errorMessage = {
     message: 'Falta ingreso de datos aqui'
 }
 
 async function hola(){
-    try{
-        const ax = await axios.get('api/mysql/probando?ID=1')
-        for (let index = 0; index < ax.data.length; index++) {
-            console.log(ax.data[index])   
+    try {
+        const ax = await axios.get('api/mysql/probando?'); // conexion api mysql
+        const data = ax.data; // se pasa a la variable 'data' los datos de mysql
+        const correoForm = document.getElementById("logcorreo").value; // recupera el dato del campo 'correo electronico'
+        const contraForm = document.getElementById("logcontra").value; // recupera el dato del campo 'contrasenna'
+        console.log('Element correo: ' + correoForm + ', contraseña: ' + contraForm); // muestra input correo y contrasena
+        
+        for (let i = 0; i < data.length; i++) {
+          const correoData = data[i].CORREO; // pasa los datos de la variable correo a una variable llamada correo
+          const contraData = data[i].CONTRASENNA; // pasa los datos de la variable correo a una variable llamada correo
+
+            if (correoForm.toLowerCase() == correoData.toLowerCase()) // variables string a LoweCase para comparar mejor
+                console.log('Correo encontrado en la mase de datos: ' + correoData);
+                    if (contraForm == contraData) // Verificar contrasenna
+                        console.log('Contraseña encontrada en la mase de datos: ' + contraData);
         }
-    }catch(error){
-        console.log(error)
-    }
+      } catch (error) {
+        console.log(error);
+      }
 }
 
 const Login = () => {
@@ -36,10 +48,10 @@ const Login = () => {
                     <h1 className='text-xl md:text-2x1  font-bold leanding-tight mt-12'>Inicia sesion con tu cuenta</h1>
                     {/* Formulario */}  
                     <div><button className= 'w-full block bg-green-500' onClick={hola}>dame usuarios</button></div>
-                    <form  /* onSubmit={handleSumbit()} */ className='mt-6' action='#' method='POST'>
+                    <form className='mt-6' action='#' method='POST'>
                         <div>
                             <label className='block text-gray-700'>Correo electronico</label>
-                            <input type='email' placeholder='Ingresa tu correo electronico'
+                            <input id="logcorreo" type='email' placeholder='Ingresa tu correo electronico'
                                 className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2'
                                 autoComplete='true' autoFocus required
                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
@@ -48,7 +60,7 @@ const Login = () => {
                         </div>
                         <div className='mt-4'>
                             <label className='block text-gray-700'>Contraseña</label>
-                            <input type='password' minLength="6"
+                            <input id='logcontra' type='password' minLength="6"
                                 placeholder='Ingresa tu contrasena'
                                 className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2'
                                 required autoComplete='true'></input>
