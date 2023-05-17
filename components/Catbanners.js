@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 const Catbanners = () => {
     return (
-        <div className='flex flex-wrap justify-center h'>
+        <div className='flex flex-wrap justify-center'>
             <Link className="justify-center flex w-1/2 md:w-80 md:h-80 overflow-hidden" href='/pagesCat/ciclismo'>
                 <Image className="object-scale-down scale-90 hover:scale-100 ease-in duration-500" src={Bici} alt='Imagen Prod'></Image>
             </Link>
