@@ -11,9 +11,9 @@ export default function Listaprod({ item }) {
         const undersc = "\n----------------------------"
         console.log(`${undersc}\nID: ` + ide, "\nTIT: " + tit, "\nPRE: " + pre + `${undersc}`)
     }
-    
+
     async function eliminarValor() {
-        const element = await axios.post('api/mysql/eliminar', { ID: item.id});
+        const element = await axios.post('api/mysql/eliminar', { ID: item.id });
         console.log('se elimino: ' + item.id)
     }
 
@@ -39,7 +39,7 @@ export default function Listaprod({ item }) {
                         titulo: item.title,
                         descripcion: item.descripcion,
                         precio: item.originalPrice,
-                        descu: item.descu,
+                        Descu: item.Descu,
                         stock: item.cantidad,
                         categoria: item.categoria,
                         img: item.img

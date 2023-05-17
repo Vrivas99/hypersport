@@ -11,7 +11,7 @@ const adminPage = () => {
     query.titulo,
     query.descripcion,
     query.precio,
-    query.descu,
+    query.Descu,
     query.stock,
     query.categoria,
     query.img]
@@ -25,8 +25,8 @@ const adminPage = () => {
                 </svg>
             </button>
 
-            <LeftAside/>
-            
+            <LeftAside />
+
             <div className="p-4 sm:ml-64 h-screen flex flex-col justify-center items-center">
                 <Formularioprod data={ab}></Formularioprod>
             </div>

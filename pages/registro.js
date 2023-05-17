@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link';
 
 const Registro = () => {
-    function creteAcount(){
+    function creteAcount() {
 
     }
     return (
@@ -30,17 +30,17 @@ const Registro = () => {
 
                             <div>
                                 <label className='block text-gray-700'>Correo electronico</label>
-                                <input type='email' placeholder='Ingresa tu correo electronico' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' autoComplete='true' autoFocus required></input>
+                                <input autoComplete='off' type='email' placeholder='Ingresa tu correo electronico' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' autoFocus required></input>
                             </div>
 
                             <div className='mt-4'>
                                 <label className='block text-gray-700'>Contrasena</label>
-                                <input type='password' minLength="6" placeholder='Ingresa tu contrasena' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' required></input>
+                                <input autoComplete='off' type='password' minLength="6" placeholder='Ingresa tu contrasena' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' required></input>
                             </div>
 
                             <div className='mt-4'>
                                 <label className='block text-gray-700'>Confirmar Contrasena</label>
-                                <input type='password' minLength="6" placeholder='Confirmar contrasena' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' required></input>
+                                <input autoComplete='off' type='password' minLength="6" placeholder='Confirmar contrasena' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' required></input>
                             </div>
 
                             <button className='w-full block bg-purple-500 hover:bg-purple-400 px-4 py-3 mt-10 rounded-lg font-semibold text-white focus:bg-purple-400' type="submit">Registrarte</button>
