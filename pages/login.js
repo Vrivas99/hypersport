@@ -50,7 +50,7 @@ const Login = () => {
                     <h1 className='text-xl md:text-2x1  font-bold leanding-tight mt-12'>Inicia sesion con tu cuenta</h1>
                     {/* Formulario */}  
         {/*           <div><button className= 'w-full block bg-green-500' onClick={hola}>dame usuarios</button></div>*/}          
-          <form  /* onSubmit={handleSumbit()} */ action='/' className='mt-6'>
+          <form  /*onSubmit={handleSumbit()} */ action='/' className='mt-6'>
                         <div>
                             <label className='block text-gray-700'>Correo electronico</label>
                             <input id ="mail" type='email' placeholder='Ingresa tu correo electronico'

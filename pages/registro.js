@@ -1,15 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Logo from '../public/img/fondoanime.jpg'
 import Image from 'next/image'
 import Link from 'next/link';
 
-const Registro = () => {
-    function creteAcount() {
+const [cuenta, setCuenta] = useState({
+    correo: '',
+    contrasenna: ''
+})
 
-    }
+async function creteAcount() {
+    
+    const [res] = await axios.post('/api/usuario', {
+        correo: cuenta.correo,
+        contrasenna: cuenta.contrasenna
+    })
+}
+
+function lockData() {
+    setCuenta({
+        correo: document.getElementById('mail').value,
+        contrasenna: document.getElementById('pas').value
+    })
+}
+
+
+const Registro = () => {
     return (
         <div>
-
             <div className='flex flex-col md:flex-row items-center'>
 
                 {/* Lado Izquierdo */}
@@ -26,16 +43,16 @@ const Registro = () => {
                         <h1 className='text-xl md:text-2x1  font-bold leanding-tight mt-12'>Registrate Aqui</h1>
 
                         {/* Formulario */}
-                        <form className='mt-6' action='#' method='POST'>
+                        <form onSubmit={creteAcount} className='mt-6' action='/login' method='POST'>
 
                             <div>
                                 <label className='block text-gray-700'>Correo electronico</label>
-                                <input autoComplete='off' type='email' placeholder='Ingresa tu correo electronico' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' autoFocus required></input>
+                                <input id = 'mail' autoComplete='off' type='email' placeholder='Ingresa tu correo electronico' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' autoFocus required></input>
                             </div>
 
                             <div className='mt-4'>
                                 <label className='block text-gray-700'>Contrasena</label>
-                                <input autoComplete='off' type='password' minLength="6" placeholder='Ingresa tu contrasena' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' required></input>
+                                <input id='pas' autoComplete='off' type='password' minLength="6" placeholder='Ingresa tu contrasena' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' required></input>
                             </div>
 
                             <div className='mt-4'>
@@ -48,7 +65,7 @@ const Registro = () => {
                             <hr className='my-6 border-gray-300 w-full'></hr>
 
                             <div className='text-center mt-2'>
-                                <Link href='login' className='text-sm font-semibold text-gray-700 hover:text-purple-600'>Ya tienes cuenta? Inicia Sesion Aqui!</Link>
+                                <Link onClick={lockData} href='login' className='text-sm font-semibold text-gray-700 hover:text-purple-600'>Ya tienes cuenta? Inicia Sesion Aqui!</Link>
                             </div>
 
                         </form>
