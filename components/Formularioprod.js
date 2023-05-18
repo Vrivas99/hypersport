@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 
 function Formularioprod({ data }) {
     const [ide, setID] = useState('');
+    const [errors, setErrors] = useState({});
     const [product,setProd] = useState({
         titulo: '',
         descripcion: '',
@@ -17,10 +18,12 @@ function Formularioprod({ data }) {
 
     async function handlePatch(e){
         e.preventDefault()
-        console.log(product)
-        const id = ide
-        const res = await axios.put('api/mysql',{id,product});
-    }
+        if (validateForm()) {
+            console.log(product)
+            const id = ide
+            const res = await axios.put('api/mysql',{id,product});
+            }    
+        }
     function lockdata(){
         console.log('valor: ' +val)
         setID(val)
@@ -34,6 +37,31 @@ function Formularioprod({ data }) {
             categoria:1,
         })
     }
+    function validateForm() {
+        const errors = {};
+              if (!product.titulo) {
+          errors.titulo = 'El campo Nombre Producto es obligatorio';
+        }
+        if (!product.descripcion) {
+          errors.descripcion = 'El campo Descripción es obligatorio';
+        }
+        if (!product.descuento) {
+            errors.descuento = 'El campo Descripción es obligatorio';
+          }
+        if (!product.img) {
+          errors.img = 'El campo Url Imagen es obligatorio';
+        }
+        if (!product.price) {
+          errors.price = 'El campo Precio es obligatorio';
+        }
+        if (!product.cantidad) {
+          errors.cantidad = 'El campo Stock es obligatorio';
+        }
+        setErrors(errors);
+      
+        // Retorna true si no hay errores, false en caso contrario
+        return Object.keys(errors).length === 0;
+      }
 
     return (
         <div>
@@ -43,21 +71,24 @@ function Formularioprod({ data }) {
                         <div className='relative'>
                             <p class="text-red-500 text-xs italic absolute -left-2 -top-1">*</p>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-nombre">Nombre Producto</label>
-                            <input id='1' defaultValue={data[1]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  placeholder="Balon de Futbol" required></input>
+                            <input id='1' defaultValue={data[1]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  placeholder="Balon de Futbol" ></input>
+                            {errors.titulo && <p className="pt-0 pb-2 text-red-500 text-xs italic">{errors.titulo}</p>}
                         </div>
                     </div>
                     <div class="w-full px-3">
                         <div className='relative'>
                             <p class="text-red-500 text-xs italic absolute -left-2 -top-1">*</p>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-nombre">Url Imagen</label>
-                            <input id='2' defaultValue={data[7]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Balon de Futbol" required></input>
+                            <input id='2' defaultValue={data[7]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Balon de Futbol" ></input>
+                            {errors.img && <p className="pt-0 pb-2 text-red-500 text-xs italic">{errors.img}</p>}
                         </div>
                     </div>
                     <div class="w-full px-3">
                         <div className='relative'>
                             <p class="text-red-500 text-xs italic absolute -left-2 -top-1">*</p>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-nombre">Descripcion</label>
-                            <textarea id='3' defaultValue={data[2]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type='Text' placeholder="Ingrese detalles o datos del producto" cols="20" rows="5" required></textarea>
+                            <textarea id='3' defaultValue={data[2]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type='Text' placeholder="Ingrese detalles o datos del producto" cols="20" rows="5" ></textarea>
+                            {errors.descripcion && <p className="pt-0 pb-2 text-red-500 text-xs italic">{errors.descripcion}</p>}
                         </div>
                     </div>
                     <div class="w-full px-3">
@@ -88,20 +119,23 @@ function Formularioprod({ data }) {
                         <div className='relative'>
                             <p class="text-red-500 text-xs italic absolute -left-2 -top-1">*</p>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-precio">Precio</label>
-                            <input id='4' defaultValue={data[3]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="number" placeholder="3550" required></input>
+                            <input id='4' defaultValue={data[3]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="number" placeholder="3550"></input>
+                            {errors.price && <p className="pt-1 pb-2 text-red-500 text-xs italic">{errors.price}</p>}
                         </div>
                     </div>
                     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                         <div className='relative'>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-descuento">Descuento</label>
                             <input id='5' defaultValue={data[4]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="number" placeholder="0"></input>
+                            {errors.descuento && <p className="pt-1 pb-2 text-red-500 text-xs italic">{errors.descuento}</p>}
                         </div>
                     </div>
                     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                         <div className='relative'>
                             <p class="text-red-500 text-xs italic absolute -left-2 -top-1">*</p>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-stock">Stock</label>
-                            <input id='6' defaultValue={data[5]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="number" placeholder="25" required></input>
+                            <input id='6' defaultValue={data[5]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="number" placeholder="25"></input>
+                            {errors.cantidad && <p className="pt-1 pb-2 text-red-500 text-xs italic">{errors.cantidad}</p>}
                         </div>
                     </div>
                     <div className='items-center'>
