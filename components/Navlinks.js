@@ -18,14 +18,13 @@ const Navlinks = () => {
 
             }]
         },
-/*         {
+        {
             name: 'Otros', submenu: true, sublink: [{
                 sublink: [
-                    { name: 'Articulos Deportivos', link: '/' },
-                    { name: 'Accesorios', link: '/' },
+                    { name: 'Ofertas', link: '/pagesCat/ofertas' },
                 ]
             }]
-        } */]
+        }]
     const [sblink, setSblink] = useState('')
 
     return <>
