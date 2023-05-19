@@ -3,7 +3,9 @@ import { FaInstagram } from 'react-icons/fa';
 import { FaTwitter } from 'react-icons/fa';
 import { FaLinkedin } from 'react-icons/fa';
 import { FaYoutube } from 'react-icons/fa';
-
+import { FaMailBulk } from 'react-icons/fa';
+import {FaPhone} from 'react-icons/fa';
+import Link from 'next/link';
 
 const Footer = () => {
     return (
@@ -26,26 +28,26 @@ const Footer = () => {
                 <div className='p-5'>
                     <ul>
                         <p className='text-white font-bold text-2xl pb-4'>Deportes</p>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'>Futbol</li>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'>Basquetbol</li>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'>Ciclismo</li>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'>Voleibol</li>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/futbol">Futbol</Link></li>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/basquet">Basquetbol</Link></li>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/futbol">Ciclismo</Link></li>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/volei">Voleibol</Link></li>
                     </ul>
                 </div>
                 <div className='p-5'>
-                    <ul>
-                        <p className='text-white font-bold text-2xl pb-4'>Productos</p>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'>Zapatillas</li>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'>Ropa</li>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'>Balones</li>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'>Accesorios</li>
+                    <ul className='pt-12'>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/tenis">Tenis</Link></li>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/golf">Golf</Link></li>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/hockey">Hockey</Link></li>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/baseball">Baseball</Link></li>
                     </ul>
                 </div>
                 <div className='p-5'>
                     <ul>
                         <p className='text-white font-bold text-2xl pb-4'>Soporte</p>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'>Ayuda</li>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'>Contacto</li>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'>Contactanos</li>
+                        <p className='text-white pb-1'><FaPhone className='text-2xl cursor-pointer hover:text-red-600  pr-1 float-left' />56-9-6284-1124</p>
+                        <p className='text-white pb-2'><FaMailBulk className='text-2xl cursor-pointer hover:text-red-600 pr-1 float-left' />soporte@hypersport.com</p>
                         <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'>Acerca de Nosotros</li>
                     </ul>
                 </div>
