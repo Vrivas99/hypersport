@@ -39,7 +39,7 @@ const historial = ({ pagos, pagitos }) => {
           <thead className='text-xs text-gray-700 uppercase bg-black dark:text-gray-400'>
             <tr>
               <th scope='col' className='text-white px-6 py-3 text-center'>
-                PRODUCTOS
+                ORDEN DE COMPRA
               </th>
               <th scope='col' className='text-white px-6 py-3 text-center'>
                 PRECIO
@@ -54,19 +54,11 @@ const historial = ({ pagos, pagitos }) => {
           </thead>
           <tbody>
 
-            <tr className='border bg-white border-gray-700 hover:bg-gray-200 hover:text-white'>
               {pagos && pagos.map((pago) => (
                 <>
                   <Tablahistorial pago={pago} key={pago.buyOrder} />
-                  <td scope='row' className='text-center px-4 py-1 font-medium text-black'>
-                    <button
-                      className='text-purple-500 hover:underline focus:outline-none' onClick={() => handleExpandRow(0)}>
-                      {isRowExpanded(0) ? 'Menos Detalles' : 'Mas Detalles'}
-                    </button>
-                  </td>
                 </>
               ))}
-            </tr>
             {/* Filas adicionales si la fila principal está expandida */}
             {isRowExpanded(0) && (
               <>

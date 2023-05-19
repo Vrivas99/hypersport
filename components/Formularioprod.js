@@ -24,8 +24,9 @@ function Formularioprod({ data }) {
             console.log(product)
             const id = ide
             const res = await axios.put('api/mysql', { id, product });
+            router.push('/adminPage')
         }
-        router.push('/adminPage')
+        
     }
     
     function lockdata() {
