@@ -2,27 +2,26 @@ import React, { useState } from 'react'
 import Logo from '../public/img/fondoanime.jpg'
 import Image from 'next/image'
 import Link from 'next/link';
+import axios from 'axios';
 
 
 const Registro = () => {
-    const [cuenta, setCuenta] = useState({
-        correo: '',
-        contrasenna: ''
-    })
+    const [correo, setCorreo] = useState('')
+    const [contrasenna, setContrasenna] = useState('')
+
+
 
     async function creteAcount() {
 
         const [res] = await axios.post('/api/usuario', {
-            correo: cuenta.correo,
-            contrasenna: cuenta.contrasenna
+            correo: correo,
+            contrasenna: contrasenna
         })
     }
 
     function lockData() {
-        setCuenta({
-            correo: document.getElementById('mail').value,
-            contrasenna: document.getElementById('pas').value
-        })
+        setCorreo(document.getElementById('mail').value);
+        setContrasenna(document.getElementById('pas').value);
     }
 
     return (
@@ -53,10 +52,10 @@ const Registro = () => {
                                 <label className='block text-gray-700'>Confirmar Contrasena</label>
                                 <input autoComplete='off' type='password' minLength="6" placeholder='Confirmar contrasena' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' required></input>
                             </div>
-                            <button className='w-full block bg-purple-500 hover:bg-purple-400 px-4 py-3 mt-10 rounded-lg font-semibold text-white focus:bg-purple-400' type="submit">Registrarte</button>
+                            <button onClick={lockData} className='w-full block bg-purple-500 hover:bg-purple-400 px-4 py-3 mt-10 rounded-lg font-semibold text-white focus:bg-purple-400' type="submit">Registrarte</button>
                             <hr className='my-6 border-gray-300 w-full'></hr>
                             <div className='text-center mt-2'>
-                                <Link onClick={lockData} href='login' className='text-sm font-semibold text-gray-700 hover:text-purple-600'>Ya tienes cuenta? Inicia Sesion Aqui!</Link>
+                                <Link href='login' className='text-sm font-semibold text-gray-700 hover:text-purple-600'>Ya tienes cuenta? Inicia Sesion Aqui!</Link>
                             </div>
                         </form>
                     </div>
