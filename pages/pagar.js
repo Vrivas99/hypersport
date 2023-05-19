@@ -43,6 +43,7 @@ const pagar = () => {
             setamount(response.data.amount)
             settransaction_date(response.data.transaction_date)
 
+            const resp2 = await axios.put('/api/historial',{buyOr:response.data.buy_order})
         } catch (error) {
             console.log('XXXXXXXXX SE CALLO LA AAAAA XXXXXXXXXXX')
         }
