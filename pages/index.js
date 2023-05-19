@@ -7,6 +7,7 @@ import { Searchbar } from '@/components/Searchbar'
 import { useState } from 'react'
 import { Searchresult } from '@/components/Searchresult'
 import { Banner } from '@/components/Banner'
+import Link from 'next/link'
 
 
 
@@ -22,7 +23,9 @@ export default function Home({ items }) {
         <Searchresult result={result} />
       </div>
       <div className='flex justify-center'>
-        <Banner />
+        <Link href='/zapatillas-e-sports-rs-x-puma-x-final-fantasy-xiv'>
+          <Banner />
+        </Link>
       </div>
       <Catbanners />
       <div className="-z-50 grid grid-cols-2 md:flex md:flex-wrap justify-center justify-items-center">
