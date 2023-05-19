@@ -41,17 +41,17 @@ export default function Login() {
     }
 
     return (
-        <div className='flex flex-col md:flex-row h- items-center'>
+        <div className='flex flex-col md:flex-row items-center align-middle'>
             {/* Lado Izquierdo */}
-            <div className='h-screen md:w-1/2 xl:w-2/3 '>
+            <div className='hidden lg:block h-screen lg:w-1/2 xl:w-2/3 '>
                 <Image src={Logo} className='w-full h-full object-center' alt='imgLog'></Image>
             </div>
             {/* Lado derecho */}
-            <div className='relative bg-white items-center justify-center flex md:mx-auto md:max-0 md:max-w-md lg:max-w-full w-full md:w-1/2 xl:w-1/3 px-6 lg:px-16 xl:px-12'>
-                <div className='cursor-pointer absolute -top-10 left-10 m-2 rounded-xl bg-purple-600 p-3 hover:bg-purple-800'>
-                    <Link className=' text-white font-bold' href='/'>volver</Link>
-                </div>
-                <div className='w-full h-auto'>
+            <div className=' bg-white items-center justify-center h-screen flex flex-col md:mx-auto md:max-0 md:max-w-md lg:max-w-full w-full md:w-1/2 xl:w-1/3 px-6 lg:px-16 xl:px-12'>
+                <div className='relative w-full h-auto'>
+                    <Link href='/' className='absolute -top-10 -left-2 cursor-pointer m-2 rounded-xl bg-purple-600 p-3 hover:bg-purple-800'>
+                        <p className=' text-white font-bold'>volver</p>
+                    </Link>
                     <h1 className='text-xl md:text-2x1  font-bold leanding-tight mt-12'>Inicia sesion con tu cuenta</h1>
                     {/* Formulario */}
                     {/*           <div><button className= 'w-full block bg-green-500' onClick={hola}>dame usuarios</button></div>*/}

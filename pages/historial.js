@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar'
 import Tablahistorial from '@/components/Tablahistorial'
 import { getPagos } from '@/services/itemService'
 const historial = ({ pagos }) => {
-  
+
   const [user, setUser] = useState()
   return (
     <div>
@@ -13,7 +13,7 @@ const historial = ({ pagos }) => {
 
       <div className='m-11 relative overflow-x-auto sm:rounded-xl'>
         <table className='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
-          <thead className='text-xs text-gray-700 uppercase bg-purple-500 dark:text-gray-400'>
+          <thead className='text-xs text-gray-700 uppercase bg-black dark:text-gray-400'>
             <tr>
               <th scope='col' className='text-white px-6 py-3 text-center'>
                 PRODUCTOS

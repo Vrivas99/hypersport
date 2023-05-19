@@ -4,11 +4,9 @@ import Prodcards from '@/components/Prodcards'
 import { getItemsINDEX } from '@/services/itemService'
 import Footer from '@/components/footer'
 import { Searchbar } from '@/components/Searchbar'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Searchresult } from '@/components/Searchresult'
 import { Banner } from '@/components/Banner'
-import axios from 'axios'
-import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 
