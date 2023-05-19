@@ -15,6 +15,4 @@ export default function profileHandler(req, res) {
     } catch (error) {
         return res.status(401).json({ error: "invalid token" });
     }
-
-
 }

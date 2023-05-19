@@ -24,3 +24,15 @@ export async function getLatestsItems(){
 
     return items.slice(0,3)
 }
+
+export async function getPagos(){
+    const response = await fetch ('http://localhost:3000/api/historial')
+    const pagos = await response.json()
+    return pagos;
+}
+
+export async function getPagitos(){
+    const response = await fetch ('http://localhost:3000/api/detalle')
+    const pagito = await response.json()
+    return pagito;
+}
