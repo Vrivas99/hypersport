@@ -1,67 +1,101 @@
 import axios from 'axios'
 import Link from 'next/link'
 import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 
 function Formularioprod({ data }) {
     const [ide, setID] = useState('');
     const [errors, setErrors] = useState({});
-    const [product,setProd] = useState({
+    const [product, setProd] = useState({
         titulo: '',
         descripcion: '',
-        img:'',
-        descuento:'',
-        price:'',
-        cantidad:'',
-        categoria:'',
+        img: '',
+        descuento: '',
+        price: '',
+        cantidad: '',
+        categoria: '',
     });
     const val = data[0]
+    const router = useRouter()
 
-    async function handlePatch(e){
+    async function handlePatch(e) {
         e.preventDefault()
         if (validateForm()) {
             console.log(product)
             const id = ide
-            const res = await axios.put('api/mysql',{id,product});
-            }    
+            const res = await axios.put('api/mysql', { id, product });
         }
-    function lockdata(){
-        console.log('valor: ' +val)
+        router.push('/adminPage')
+    }
+    
+    function lockdata() {
+        console.log('valor: ' + val)
+        const expr = document.getElementById('cate').value
+        var place;
+        switch (expr) {
+            case 'Futbol':
+                place = 1
+                break;
+            case 'Tennis':
+                place = 2
+                break;
+            case 'Basquetball':
+                place = 3
+                break;
+            case 'Volleyball':
+                place = 4
+                break;
+            case 'Hockey':
+                place = 5
+                break
+            case 'Ciclismo':
+                place = 6
+                break;
+            case 'Baseball':
+                place = 7
+                break;
+            case 'Golf':
+                place = 8
+                break
+            default:
+                break
+        }
         setID(val)
-        setProd({        
+        setProd({
             titulo: document.getElementById(1).value,
             descripcion: document.getElementById(3).value,
-            img:document.getElementById(2).value,
-            descuento:document.getElementById(5).value,
-            price:document.getElementById(4).value,
-            cantidad:document.getElementById(6).value,
-            categoria:1,
+            img: document.getElementById(2).value,
+            descuento: document.getElementById(5).value,
+            price: document.getElementById(4).value,
+            cantidad: document.getElementById(6).value,
+            categoria: place,
         })
     }
     function validateForm() {
         const errors = {};
-              if (!product.titulo) {
-          errors.titulo = 'El campo Nombre Producto es obligatorio';
+        if (!product.titulo) {
+            errors.titulo = 'El campo Nombre Producto es obligatorio';
         }
         if (!product.descripcion) {
-          errors.descripcion = 'El campo Descripción es obligatorio';
+            errors.descripcion = 'El campo Descripción es obligatorio';
         }
         if (!product.descuento) {
             errors.descuento = 'El campo Descripción es obligatorio';
-          }
+        }
         if (!product.img) {
-          errors.img = 'El campo Url Imagen es obligatorio';
+            errors.img = 'El campo Url Imagen es obligatorio';
         }
         if (!product.price) {
-          errors.price = 'El campo Precio es obligatorio';
+            errors.price = 'El campo Precio es obligatorio';
         }
         if (!product.cantidad) {
-          errors.cantidad = 'El campo Stock es obligatorio';
+            errors.cantidad = 'El campo Stock es obligatorio';
         }
         setErrors(errors);
-      
+
         // Retorna true si no hay errores, false en caso contrario
         return Object.keys(errors).length === 0;
-      }
+    }
 
     return (
         <div>
@@ -71,7 +105,7 @@ function Formularioprod({ data }) {
                         <div className='relative'>
                             <p class="text-red-500 text-xs italic absolute -left-2 -top-1">*</p>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-nombre">Nombre Producto</label>
-                            <input id='1' defaultValue={data[1]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  placeholder="Balon de Futbol" ></input>
+                            <input id='1' defaultValue={data[1]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Balon de Futbol" ></input>
                             {errors.titulo && <p className="pt-0 pb-2 text-red-500 text-xs italic">{errors.titulo}</p>}
                         </div>
                     </div>
@@ -87,7 +121,7 @@ function Formularioprod({ data }) {
                         <div className='relative'>
                             <p class="text-red-500 text-xs italic absolute -left-2 -top-1">*</p>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-nombre">Descripcion</label>
-                            <textarea id='3' defaultValue={data[2]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type='Text' placeholder="Ingrese detalles o datos del producto" cols="20" rows="5" ></textarea>
+                            <textarea id='3' defaultValue={data[2]} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type='Text' placeholder="Ingrese detalles o datos del producto" cols="20" rows="5" ></textarea>
                             {errors.descripcion && <p className="pt-0 pb-2 text-red-500 text-xs italic">{errors.descripcion}</p>}
                         </div>
                     </div>
@@ -97,7 +131,7 @@ function Formularioprod({ data }) {
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-categoria">Categoria</label>
                         </div>
                         <div class="relative">
-                            <select defaultValue={data[6]} class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" >
+                            <select id='cate' defaultValue={data[6]} class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" >
                                 <option>Futbol</option>
                                 <option>Tennis</option>
                                 <option>Basquetball</option>

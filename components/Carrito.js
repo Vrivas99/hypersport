@@ -10,13 +10,36 @@ export default function Carrito() {
     const [tokenResponse, setToken] = useState([]);
     const [urlResponse, setUrl] = useState([]);
     const [tot, settot] = React.useState(0);
+    const [shopin,setshopin] = useState([]);
+    const [user, setUser] = useState()
 
+    const getProfile = async () => {
+        try{ 
+        const response = await axios.get('api/profile')
+        console.log(response.data.user)
+        setUser(response.data.user)
+        } catch(error){
+         setUser('') 
+        }
+      }
 
     const handleSubmit = async e => {
+        if (user == '' || user==null) {
+            const tempuser = ''
+        } else {
+            const tempuser = user
+        }
         e.preventDefault()
         console.log('posteando datos')
+        console.log(shopin)
+        const buyO = "O-" + Math.floor(Math.random() * 10000) + 1
+        const sessID = "S-" + Math.floor(Math.random() * 10000) + 1 
+        const amt = tot
+        await axios.post('api/carrito',{lis: shopin,buyO:buyO,amt:amt,user:user})
         //POST a WEBPAY para generar transacccion
-        const res = await axios.post('api/webpay', { buyO: "O-" + Math.floor(Math.random() * 10000) + 1, sessID: "S-" + Math.floor(Math.random() * 10000) + 1, amt: tot, retUrl: 'http://localhost:3000', })
+        //aca debe ir el post
+        //descomentar esto
+        const res = await axios.post('api/webpay', { buyO: "O-" + Math.floor(Math.random() * 10000) + 1, sessID: "S-" + Math.floor(Math.random() * 10000) + 1, amt: tot, retUrl: 'http://localhost:3000/pagar', })
             .then((response) => {
                 console.log("data post:" + response);
                 console.log(response.data.token)
@@ -27,7 +50,7 @@ export default function Carrito() {
                 doit()
             }, (error) => {
                 console.log(error);
-            });
+            }); 
     }
 
     function getForm(res) {
@@ -37,6 +60,8 @@ export default function Carrito() {
         const web3 = document.getElementById("web")
         console.log(web3)
     }
+
+    //descomentar esto
     function doit() {
         const transac = document.getElementById("web").submit()
     }
@@ -49,9 +74,17 @@ export default function Carrito() {
         return total
     }
 
+    function getShoping(){
+        const kk = cart.items
+        return kk        
+    }
+
     useEffect(() => {
         settot(getTotal())
+        setshopin(getShoping())
+        getProfile()
         console.log("Valorl de tot: " + tot)
+        console.log(shopin)
     })
     return (
         <div style={{ display: cart.isOpen ? 'block' : 'none' }} className="overflow-y-auto z-50 fixed right-0 top-0 bg-white w-screen md:w-3/6 xl:w-4/12 h-screen p-6 shadow-2xl shadow-slate-950 flex flex-col">
