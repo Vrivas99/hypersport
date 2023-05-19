@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { useRouter } from 'next/router'
 
 
 
@@ -14,6 +15,7 @@ const Formularioagregarprod = () => {
     const [cantidad, setCant] = useState('');
     const [marca, setMarc] = useState('');
     const [categoria, setCategoria] = useState('');
+    const router = useRouter();
 
     async function agregarValor(event) {
         console.log('setTitle:', title)
@@ -35,6 +37,7 @@ const Formularioagregarprod = () => {
             marca: marca,
             categoria: categoria,
         });
+        router.push('/adminPage')
     }
 
     function lockData() {
@@ -130,7 +133,7 @@ const Formularioagregarprod = () => {
                 </div>
                 <div className='items-center'>
                     <Link href="/adminPage" className='mt-10 mr-3 flex float-left justify-center cursor-pointer bg-red-600 hover:bg-red-900 text-white px-6 py-2 rounded-md font-sans' type='submite'>Volver</Link>
-                    <button href="/adminPage" onClick={lockData} className='mt-10 ml3 flex float-right justify-center cursor-pointer bg-green-600 hover:bg-green-900 text-white px-6 py-2 rounded-md font-sans' type='submite'>Guardar</button>
+                    <button onClick={lockData} className='mt-10 ml3 flex float-right justify-center cursor-pointer bg-green-600 hover:bg-green-900 text-white px-6 py-2 rounded-md font-sans' type='submite'>Guardar</button>
                 </div>
             </form>
 

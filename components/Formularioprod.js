@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Link from 'next/link'
 import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 
 function Formularioprod({ data }) {
     const [ide, setID] = useState('');
@@ -15,6 +16,7 @@ function Formularioprod({ data }) {
         categoria: '',
     });
     const val = data[0]
+    const router = useRouter()
 
     async function handlePatch(e) {
         e.preventDefault()
@@ -23,7 +25,9 @@ function Formularioprod({ data }) {
             const id = ide
             const res = await axios.put('api/mysql', { id, product });
         }
+        router.push('/adminPage')
     }
+    
     function lockdata() {
         console.log('valor: ' + val)
         const expr = document.getElementById('cate').value
@@ -127,7 +131,7 @@ function Formularioprod({ data }) {
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="grid-categoria">Categoria</label>
                         </div>
                         <div class="relative">
-                            <select defaultValue={data[6]} class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" >
+                            <select id='cate' defaultValue={data[6]} class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" >
                                 <option>Futbol</option>
                                 <option>Tennis</option>
                                 <option>Basquetball</option>

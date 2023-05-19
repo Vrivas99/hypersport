@@ -5,7 +5,7 @@ import { Options, IntegrationApiKeys, Environment, IntegrationCommerceCodes } fr
 
 export default async function handler(req, res) {
     switch (req.method) {
-        case 'GET':
+        case 'PUT':
             return await verTransaccion(req,res)
         case 'POST':
             return await crearTransaccion(req,res)
@@ -21,9 +21,17 @@ const crearTransaccion = async (req, res) => {
     var returnUrl = retUrl;
     const tx = new WebpayPlus.Transaction(new Options(IntegrationCommerceCodes.WEBPAY_PLUS, IntegrationApiKeys.WEBPAY, Environment.Integration));
     const response = await tx.create(buyOrder, sessionId, amount, returnUrl);
-    return res.status(200).json(response)
+    return res.status(200).json(response)//url y el token de la transaccion
 }
 
 const verTransaccion = async(req,res) =>{
-    return res.status(200).json('Get para token')
+    console.log([req.body])
+    const {Tkn} = req.body
+    console.log('SERVIDOR: '+Tkn)
+    const bx = new WebpayPlus.Transaction(new Options(IntegrationCommerceCodes.WEBPAY_PLUS, IntegrationApiKeys.WEBPAY, Environment.Integration));
+    console.log("--------------------------------")
+    console.log("Se hizo un bx.commit()")
+    const response = await bx.commit(Tkn);
+    
+    return res.status(200).json(response)
 }

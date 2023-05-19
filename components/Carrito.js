@@ -16,7 +16,7 @@ export default function Carrito() {
         e.preventDefault()
         console.log('posteando datos')
         //POST a WEBPAY para generar transacccion
-        const res = await axios.post('api/webpay', { buyO: "O-" + Math.floor(Math.random() * 10000) + 1, sessID: "S-" + Math.floor(Math.random() * 10000) + 1, amt: tot, retUrl: 'http://localhost:3000', })
+        const res = await axios.post('api/webpay', { buyO: "O-" + Math.floor(Math.random() * 10000) + 1, sessID: "S-" + Math.floor(Math.random() * 10000) + 1, amt: tot, retUrl: 'http://localhost:3000/pagar', })
             .then((response) => {
                 console.log("data post:" + response);
                 console.log(response.data.token)

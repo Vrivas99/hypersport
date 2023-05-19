@@ -4,16 +4,17 @@ import Prodcards from '@/components/Prodcards'
 import { getItemsINDEX } from '@/services/itemService'
 import Footer from '@/components/footer'
 import { Searchbar } from '@/components/Searchbar'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Searchresult } from '@/components/Searchresult'
 import { Banner } from '@/components/Banner'
+import axios from 'axios'
+import { useRouter } from 'next/router'
 
 
 
 export default function Home({ items }) {
-
   const [result, setResult] = useState([])
-
+  const [user, setUser] = useState()
   return (
     <div>
       <Navbar />
@@ -44,5 +45,6 @@ export async function getStaticProps() {
       items: res,
     }
   }
+
 }
 

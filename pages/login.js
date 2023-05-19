@@ -1,39 +1,44 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Logo from '../public/img/fondoanime.jpg'
 import Image from 'next/image'
 import Link from 'next/link';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 /* import probando from '../pages/api/mysql/probando' */
 const errorMessage = {
     message: 'Falta ingreso de datos aqui'
 }
 
-async function hola(){
-    try{
-        const ax = await axios.get('api/mysql/probando?ID=1')
-        const bx = ax.data
-        console.log( 'Este es el html element: '+ document.getElementById('mail').value)
-        const corr = document.getElementById('mail').value
-        const contr = document.getElementById('passw').value
-        for (let index = 0; index < bx.length; index++){
-            const correoData = bx[index].CORREO;
-            const ccontraData = bx[index].CONTRASENNA; 
-            if (corr == correoData && contr == ccontraData) {
-                console.log('Usuario autentificado')
-                console.log('User:' + bx[index].CORREO)
-                console.log('Pass:' + bx[index].CONTRASENNA)
-                break
-            } else {
-                continue
-            } 
-        }
-      } catch (error) {
-        console.log(error);
-      }
-}
 
-const Login = () => {
+export default function Login() {
+    const router = useRouter();
+    const emailInput = useRef();
+    const passwordInput = useRef();
+
+    const handleSumbit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('/api/auth/login', { email: emailInput.current.value, cont: passwordInput.current.value })
+            console.log(response)
+            router.push('/')
+        } catch (error) {
+            router.push('/login')
+        }
+        /*    const email = emailInput.current.value;
+        const password = passwordInput.current.value;
+        
+        const response = await fetch('./api/session', {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({email,password})
+        });
+
+        if (response.ok){
+
+            return router.push("/");
+        } */
+    }
 
     return (
         <div className='flex flex-col md:flex-row h- items-center'>
@@ -48,12 +53,12 @@ const Login = () => {
                 </div>
                 <div className='w-full h-auto'>
                     <h1 className='text-xl md:text-2x1  font-bold leanding-tight mt-12'>Inicia sesion con tu cuenta</h1>
-                    {/* Formulario */}  
-        {/*           <div><button className= 'w-full block bg-green-500' onClick={hola}>dame usuarios</button></div>*/}          
-          <form  /*onSubmit={handleSumbit()} */ action='/' className='mt-6'>
+                    {/* Formulario */}
+                    {/*           <div><button className= 'w-full block bg-green-500' onClick={hola}>dame usuarios</button></div>*/}
+                    <form onSubmit={handleSumbit} className='mt-6'>
                         <div>
                             <label className='block text-gray-700'>Correo electronico</label>
-                            <input id ="mail" type='email' placeholder='Ingresa tu correo electronico'
+                            <input ref={emailInput} id="mail" type='email' placeholder='Ingresa tu correo electronico'
                                 className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2'
                                 autoComplete='true' autoFocus required
                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
@@ -62,7 +67,7 @@ const Login = () => {
                         </div>
                         <div className='mt-4'>
                             <label className='block text-gray-700'>Contraseña</label>
-                            <input id='passw' type='password' minLength="6"
+                            <input ref={passwordInput} id='passw' type='password' minLength="6"
                                 placeholder='Ingresa tu contrasena'
                                 className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2'
                                 required autoComplete='true'></input>
@@ -70,7 +75,7 @@ const Login = () => {
                         <div className='text-right mt-2'>
                             <Link href='resetPassword' className='text-sm font-semibold text-gray-700 hover:text-purple-600'>Olvidaste tu contraseña?</Link>
                         </div>
-                        <button onClick={hola} className='w-full block bg-purple-500 hover:bg-purple-400 px-4 py-3 mt-6 rounded-lg font-semibold text-white focus:bg-purple-400' type="submit" href="/">Ingresar</button>
+                        <button className='w-full block bg-purple-500 hover:bg-purple-400 px-4 py-3 mt-6 rounded-lg font-semibold text-white focus:bg-purple-400' type="submit" href="/">Ingresar</button>
                         <hr className='my-6 border-gray-300 w-full'></hr>
                         <div className='text-center mt-2'>
                             <Link href='registro' className='text-sm font-semibold text-gray-700 hover:text-purple-600'>¿No tienes cuenta? Registrate Aqui!</Link>
@@ -83,5 +88,3 @@ const Login = () => {
 
     )
 }
-
-export default Login

@@ -3,28 +3,28 @@ import Logo from '../public/img/fondoanime.jpg'
 import Image from 'next/image'
 import Link from 'next/link';
 
-const [cuenta, setCuenta] = useState({
-    correo: '',
-    contrasenna: ''
-})
-
-async function creteAcount() {
-    
-    const [res] = await axios.post('/api/usuario', {
-        correo: cuenta.correo,
-        contrasenna: cuenta.contrasenna
-    })
-}
-
-function lockData() {
-    setCuenta({
-        correo: document.getElementById('mail').value,
-        contrasenna: document.getElementById('pas').value
-    })
-}
-
 
 const Registro = () => {
+    const [cuenta, setCuenta] = useState({
+        correo: '',
+        contrasenna: ''
+    })
+    
+    async function creteAcount() {
+        
+        const [res] = await axios.post('/api/usuario', {
+            correo: cuenta.correo,
+            contrasenna: cuenta.contrasenna
+        })
+    }
+    
+    function lockData() {
+        setCuenta({
+            correo: document.getElementById('mail').value,
+            contrasenna: document.getElementById('pas').value
+        })
+    }
+
     return (
         <div>
             <div className='flex flex-col md:flex-row items-center'>
