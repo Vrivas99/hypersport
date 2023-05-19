@@ -3,10 +3,21 @@ import Logo from '../public/img/fondoanime.jpg'
 import Image from 'next/image'
 import Link from 'next/link';
 
+
+async function valPassword() { // si no son iguales las contrasenas, no puede registrarse
+        if ( document.getElementById('pass1').value != document.getElementById('pass2').value )
+        console.log('Las contrasenas son distintas')
+        return 0; // devuelve 0 si las contrasennas son distintas
+    }
+
 const Registro = () => {
     function creteAcount() {
-
     }
+
+    const errorMessage = {
+        message: 'Falta ingreso de datos aqui'
+    }
+
     return (
         <div>
 
@@ -25,6 +36,8 @@ const Registro = () => {
                     <div className='w-full h-100'>
                         <h1 className='text-xl md:text-2x1  font-bold leanding-tight mt-12'>Registrate Aqui</h1>
 
+                        <button onClick={valPassword} className='w-full block bg-green-500 hover:bg-green-400 px-2 py-2 mt-10 rounded-lg font-semibold text-white focus:bg-green-400' type="submit">validate psw</button>
+
                         {/* Formulario */}
                         <form className='mt-6' action='#' method='POST'>
 
@@ -35,12 +48,14 @@ const Registro = () => {
 
                             <div className='mt-4'>
                                 <label className='block text-gray-700'>Contrasena</label>
-                                <input autoComplete='off' type='password' minLength="6" placeholder='Ingresa tu contrasena' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' required></input>
+                                <input id='pass1' autoComplete='off' type='password' minLength="6" placeholder='Ingresa tu contrasena' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' required></input>
+                                <span className='text-red-500 hidden'>{errorMessage.message}</span>
                             </div>
 
                             <div className='mt-4'>
                                 <label className='block text-gray-700'>Confirmar Contrasena</label>
-                                <input autoComplete='off' type='password' minLength="6" placeholder='Confirmar contrasena' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' required></input>
+                                <input id='pass2' autoComplete='off' type='password' minLength="6" placeholder='Confirmar contrasena' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' required></input>
+                                <span className='text-red-500 hidden'>{errorMessage.message}</span>
                             </div>
 
                             <button className='w-full block bg-purple-500 hover:bg-purple-400 px-4 py-3 mt-10 rounded-lg font-semibold text-white focus:bg-purple-400' type="submit">Registrarte</button>
