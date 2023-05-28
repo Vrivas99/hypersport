@@ -24,8 +24,9 @@ function Formularioprod({ data }) {
             console.log(product)
             const id = ide
             const res = await axios.put('api/mysql', { id, product });
+            router.push('/adminPage')
         }
-        router.push('/adminPage')
+        
     }
     
     function lockdata() {
@@ -34,28 +35,28 @@ function Formularioprod({ data }) {
         var place;
         switch (expr) {
             case 'Futbol':
-                place = 1
+                place = 7
                 break;
             case 'Tennis':
-                place = 2
+                place = 1
                 break;
             case 'Basquetball':
-                place = 3
+                place = 6
                 break;
             case 'Volleyball':
                 place = 4
                 break;
             case 'Hockey':
-                place = 5
+                place = 3
                 break
             case 'Ciclismo':
-                place = 6
+                place = 8
                 break;
             case 'Baseball':
-                place = 7
+                place = 5
                 break;
             case 'Golf':
-                place = 8
+                place = 2
                 break
             default:
                 break

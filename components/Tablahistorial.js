@@ -24,10 +24,10 @@ const Tablahistorial = ({ pago }) => {
     return expandedRows.includes(row);
   };
 
+
   return (
     <>
       <tr className='border bg-white border-gray-700 hover:bg-gray-200 hover:text-white'>
-
         <td scope='row' className='px-4 py-1 font-medium text-black text-center'>
           {pago.buyOrder}
         </td>
@@ -39,35 +39,13 @@ const Tablahistorial = ({ pago }) => {
         <td scope='row' className='text-center px-4 py-1 font-medium text-black'>
           {pago.fecha}
         </td>
-
         <td scope='row' className='text-center px-4 py-1 font-medium text-black'>
           <button
             className='text-purple-500 hover:underline focus:outline-none' onClick={() => handleExpandRow(0)}>
             {isRowExpanded(0) ? 'Menos Detalles' : 'Mas Detalles'}
           </button>
         </td>
-
       </tr>
-      {/* Filas adicionales si la fila principal está expandida */}
-      {isRowExpanded(0) && (
-        <>
-          {/* Fila con encabezados adicionales */}
-          <tr className='border bg-gray-300'>
-            <td className='px-4 py-2 text-black font-bold text-center'>ID</td>
-            <td className='px-4 py-2  text-black font-bold text-center'>NOMBRE</td>
-            <td className='px-4 py-2 text-black font-bold text-center'>CANTIDAD</td>
-            <td className='px-4 py-2 text-black font-bold text-center'>PRECIO</td>
-          </tr>
-
-          {/* Fila con información adicional */}
-          <tr className='border bg-gray-200'>
-            <td className='px-4 py-2 text-gray-700  text-center'>8</td>
-            <td className='px-4 py-2 text-gray-700  text-center'>Bicicleta</td>
-            <td className='px-4 py-2 text-gray-700  text-center'>10</td>
-            <td className='px-4 py-2 text-gray-700  text-center'>8640</td>
-          </tr>
-        </>
-      )}
     </>
   )
 }

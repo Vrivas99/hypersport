@@ -3,9 +3,9 @@ import React from 'react'
 
 const adminLog = () => {
     return (
-        <div className='bg-gray-900 h-screen'>
-            <div className='flex justify-center'>
-                <form className='w-1/3 bg-gray-800 p-10 rounded-md mt-64 '>
+        <div className='bg-gray-900 h-screen flex justify-center'>
+            <div className='flex w-[30%] justify-center items-center'>
+                <form className='w-[100%] bg-gray-800 p-10 rounded-md'>
                     <div className='flex justify-center m-3'>
                         <h1 className='font-bold text-white text-2xl'>Admin Login</h1>
                     </div>
