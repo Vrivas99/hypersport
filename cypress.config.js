@@ -5,6 +5,7 @@ module.exports = defineConfig({
   viewportHeight: 768,
   e2e: {
     experimentalRunAllSpecs: true,
+    experimentalStudio: true,
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
