@@ -86,7 +86,7 @@ const Registro = () => {
                         {showAlertCor && (
                             <div className='bg-red-300 flex justify-center p-2 mt-3 rounded-lg'>
                                 <Alert color="danger" className=''>
-                                    <strong>Correo ya en uso</strong>
+                                    <strong>Este usuario ya existe</strong>
                                 </Alert>
                             </div>
                         )}
