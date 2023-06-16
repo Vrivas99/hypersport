@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { serialize } from "cookie";
 import { pool } from "@/config/db";
 
-export default async function loginHandler(req, res) {
+export default async function adminHandler(req, res) {
   const { email, cont } = req.body;
   const [rows] = await pool.query("SELECT * FROM USUARIO WHERE IDCAT != 0");
   for (let index = 0; index < rows.length; index++) {
