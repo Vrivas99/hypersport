@@ -1,27 +1,64 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import Logo from '../public/img/fondoanime.jpg'
 import Image from 'next/image'
 import Link from 'next/link';
 import axios from 'axios';
+import { useRouter } from 'next/router';
+import { Alert } from "reactstrap";
+
 
 
 const Registro = () => {
-    const [correo, setCorreo] = useState('')
-    const [contrasenna, setContrasenna] = useState('')
+
+    const router = useRouter();
+    const emailInput = useRef();
+    const passwordInput = useRef();
+    const passwordInput2 = useRef();
+    const [showAlertpas, setShowAlertPas] = useState(false);
+    const [showAlertCor, setShowAlertCor] = useState(false);
 
 
 
-    async function creteAcount() {
 
-        const [res] = await axios.post('/api/usuario', {
-            correo: correo,
-            contrasenna: contrasenna
-        })
-    }
+    /*     async function creteAcount() {
+            if (contrasenna == contrasenna2) {
+                const [res] = await axios.post('/api/usuario', {
+                    correo: correo,
+                    contrasenna: contrasenna
+                })
+    
+            } else {
+                console.log('contrasenas no coinciden')
+            }
+        }
+    
+        function lockData() {
+            setCorreo(document.getElementById('mail').value);
+            setContrasenna(document.getElementById('pas').value);
+            setContrasenna2(document.getElementById('pas2').value);
+        } */
 
-    function lockData() {
-        setCorreo(document.getElementById('mail').value);
-        setContrasenna(document.getElementById('pas').value);
+    async function creteAcount(e) {
+        e.preventDefault();
+        try {
+            const response = await axios.post('/api/auth/registro', { correo: emailInput.current.value })
+            if (passwordInput.current.value === passwordInput2.current.value) {
+                const res = await axios.post('/api/usuario', {
+                    correo: emailInput.current.value,
+                    contrasenna: passwordInput.current.value
+                })
+                console.log(res)
+                router.push('/login')
+            } else {
+                console.log('contrasenas no coinciden')
+                console.log(passwordInput.current.value)
+                console.log(passwordInput2.current.value)
+                setShowAlertPas(true);
+            }
+        } catch (e) {
+            console.log(e)
+            setShowAlertCor(true);
+        }
     }
 
     return (
@@ -39,20 +76,34 @@ const Registro = () => {
                         </Link>
                         <h1 className='text-xl md:text-2x1  font-bold leanding-tight mt-12'>Registrate Aqui</h1>
                         {/* Formulario */}
-                        <form onSubmit={creteAcount} className='mt-6' action='/login' method='POST'>
+                        {showAlertpas && (
+                            <div className='bg-red-300 flex justify-center p-2 mt-3 rounded-lg'>
+                                <Alert color="danger" className=''>
+                                    <strong>Las Contraseñas deben ser iguales</strong>
+                                </Alert>
+                            </div>
+                        )}
+                        {showAlertCor && (
+                            <div className='bg-red-300 flex justify-center p-2 mt-3 rounded-lg'>
+                                <Alert color="danger" className=''>
+                                    <strong>Correo ya en uso</strong>
+                                </Alert>
+                            </div>
+                        )}
+                        <form onSubmit={creteAcount} className='mt-3' method='POST'>
                             <div>
                                 <label className='block text-gray-700'>Correo electronico</label>
-                                <input id='mail' autoComplete='off' type='email' placeholder='Ingresa tu correo electronico' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' autoFocus required></input>
+                                <input ref={emailInput} id='mail' autoComplete='off' type='email' placeholder='Ingresa tu correo electronico' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' autoFocus required></input>
                             </div>
                             <div className='mt-4'>
-                                <label className='block text-gray-700'>Contrasena</label>
-                                <input id='pas' autoComplete='off' type='password' minLength="6" placeholder='Ingresa tu contrasena' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' required></input>
+                                <label className='block text-gray-700'>Contraseña</label>
+                                <input ref={passwordInput} id='pas' autoComplete='off' type='password' minLength="6" placeholder='Ingresa tu contrasena' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' required></input>
                             </div>
                             <div className='mt-4'>
-                                <label className='block text-gray-700'>Confirmar Contrasena</label>
-                                <input autoComplete='off' type='password' minLength="6" placeholder='Confirmar contrasena' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' required></input>
+                                <label className='block text-gray-700'>Confirmar Contraseña</label>
+                                <input ref={passwordInput2} id='pas2' autoComplete='off' type='password' minLength="6" placeholder='Confirmar contrasena' className='w-full bg-gray-200 mt-2 border focus:border-purple-500 focus:bg-white focus:outline-none rounded-lg px-4 py-2' required></input>
                             </div>
-                            <button onClick={lockData} className='w-full block bg-purple-500 hover:bg-purple-400 px-4 py-3 mt-10 rounded-lg font-semibold text-white focus:bg-purple-400' type="submit">Registrarte</button>
+                            <button className='w-full block bg-purple-500 hover:bg-purple-400 px-4 py-3 mt-10 rounded-lg font-semibold text-white focus:bg-purple-400' type="submit">Registrarte</button>
                             <hr className='my-6 border-gray-300 w-full'></hr>
                             <div className='text-center mt-2'>
                                 <Link href='login' className='text-sm font-semibold text-gray-700 hover:text-purple-600'>Ya tienes cuenta? Inicia Sesion Aqui!</Link>

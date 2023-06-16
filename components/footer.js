@@ -4,7 +4,7 @@ import { FaTwitter } from 'react-icons/fa';
 import { FaLinkedin } from 'react-icons/fa';
 import { FaYoutube } from 'react-icons/fa';
 import { FaMailBulk } from 'react-icons/fa';
-import {FaPhone} from 'react-icons/fa';
+import { FaPhone } from 'react-icons/fa';
 import Link from 'next/link';
 
 const Footer = () => {

@@ -1,9 +1,11 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import Logo from '../public/img/fondoanime.jpg'
 import Image from 'next/image'
 import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { Alert } from "reactstrap";
+
 
 /* import probando from '../pages/api/mysql/probando' */
 const errorMessage = {
@@ -15,6 +17,8 @@ export default function Login() {
     const router = useRouter();
     const emailInput = useRef();
     const passwordInput = useRef();
+    const [showAlert, setShowAlert] = useState(false);
+
 
     const handleSumbit = async (e) => {
         e.preventDefault();
@@ -23,7 +27,9 @@ export default function Login() {
             console.log(response)
             router.push('/')
         } catch (error) {
+            setShowAlert(true);
             router.push('/login')
+
         }
         /*    const email = emailInput.current.value;
         const password = passwordInput.current.value;
@@ -53,9 +59,17 @@ export default function Login() {
                         <p className=' text-white font-bold'>volver</p>
                     </Link>
                     <h1 className='text-xl md:text-2x1  font-bold leanding-tight mt-12'>Inicia sesion con tu cuenta</h1>
+
+                    {showAlert && (
+                        <div className='bg-red-300 flex justify-center p-2 mt-2 rounded-lg'>
+                            <Alert color="danger" className=''>
+                                <strong>Correo o contraseña incorrecta</strong>
+                            </Alert>
+                        </div>
+                    )}
                     {/* Formulario */}
                     {/*           <div><button className= 'w-full block bg-green-500' onClick={hola}>dame usuarios</button></div>*/}
-                    <form onSubmit={handleSumbit} className='mt-6'>
+                    <form onSubmit={handleSumbit} className='mt-3'>
                         <div>
                             <label className='block text-gray-700'>Correo electronico</label>
                             <input ref={emailInput} id="mail" type='email' placeholder='Ingresa tu correo electronico'
