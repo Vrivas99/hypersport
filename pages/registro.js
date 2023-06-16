@@ -79,7 +79,7 @@ const Registro = () => {
                         {showAlertpas && (
                             <div className='bg-red-300 flex justify-center p-2 mt-3 rounded-lg'>
                                 <Alert color="danger" className=''>
-                                    <strong>Las Contraseñas deben ser iguales</strong>
+                                    <strong>Las contraseñas deben ser iguales</strong>
                                 </Alert>
                             </div>
                         )}
