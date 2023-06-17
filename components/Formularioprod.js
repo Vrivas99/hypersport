@@ -81,7 +81,7 @@ function Formularioprod({ data }) {
             errors.descripcion = 'El campo Descripción es obligatorio';
         }
         if (!product.descuento) {
-            errors.descuento = 'El campo Descripción es obligatorio';
+            errors.descuento = 'El campo Descuento es obligatorio';
         }
         if (!product.img) {
             errors.img = 'El campo Url Imagen es obligatorio';

@@ -4,7 +4,7 @@ import { FaTwitter } from 'react-icons/fa';
 import { FaLinkedin } from 'react-icons/fa';
 import { FaYoutube } from 'react-icons/fa';
 import { FaMailBulk } from 'react-icons/fa';
-import {FaPhone} from 'react-icons/fa';
+import { FaPhone } from 'react-icons/fa';
 import Link from 'next/link';
 
 const Footer = () => {
@@ -30,7 +30,7 @@ const Footer = () => {
                         <p className='text-white font-bold text-2xl pb-4'>Deportes</p>
                         <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/futbol">Futbol</Link></li>
                         <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/basquet">Basquetbol</Link></li>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/futbol">Ciclismo</Link></li>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/ciclismo">Ciclismo</Link></li>
                         <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/volei">Voleibol</Link></li>
                     </ul>
                 </div>
