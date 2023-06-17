@@ -21,7 +21,7 @@ describe('Registrar usuario con datos no registrados previamente', () => {
     cy.get('#pas').type('123456')
     //selecciono el input de confirmar contraseña
     cy.wait(1000)
-    cy.get('.mt-6 > :nth-child(3) > .w-full').type('123456')
+    cy.get('#pas2').type('123456')
 
     //pulso el boton de registrarte
     cy.wait(1000)

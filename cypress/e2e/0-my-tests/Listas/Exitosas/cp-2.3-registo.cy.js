@@ -21,7 +21,7 @@ describe('todos los campos pero correo invalido', () => {
     cy.get('#pas').type('123456')
     //selecciono el input de confirmar contraseña
     cy.wait(2000)
-    cy.get('.mt-6 > :nth-child(3) > .w-full').type('123456')
+    cy.get('#pas2').type('123456')
     
     //pulso el boton de registrarte
     cy.wait(2000)

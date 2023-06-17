@@ -21,7 +21,7 @@ describe('Algunos campos rellenos y otros no', () => {
     cy.get('#pas').should('have.value','')
     //selecciono el input de confirmar contraseña
     cy.wait(500)
-    cy.get('.mt-6 > :nth-child(3) > .w-full').type('qwerty')
+    cy.get('#pas2').type('qwerty')
     
     //pulso el boton de registrarte
     cy.wait(500)
