@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import LeftAside from "@/components/LeftAside";
+import axios from "axios";
 
-const adminpageuser = ({ items, showAs }) => {
+export default function adminpageuser() {
+  const [user, setUser] = useEffect({
+    id: "",
+    name: "",
+    password: "",
+  });
+
+  async function getUsers() {
+    const response = await fetch("/api/auth/usuarios");
+    const data = await response.json();
+    console.log(data);
+  }
+
+  getUsers();
+
   return (
     <div className="bg-gray-900 antialiased h-screen">
       <button
@@ -133,6 +148,4 @@ const adminpageuser = ({ items, showAs }) => {
       </div>
     </div>
   );
-};
-
-export default adminpageuser;
+}
