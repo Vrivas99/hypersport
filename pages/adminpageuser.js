@@ -4,7 +4,9 @@ import LeftAside from "@/components/LeftAside";
 import axios from "axios";
 
 export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:3000/api/auth/usuarios");
+  const res = await fetch("http://localhost:3000/api/auth/usuarios", {
+    method: "GET",
+  });
   const repo = await res.json();
   return { props: { repo } };
 };
@@ -12,6 +14,10 @@ export const getStaticProps = async () => {
 export default function adminpageuser({ repo }) {
   console.log(repo);
 
+  async function handleDelete(id) {
+    const element = await axios.post("api/auth/eliminarusuario", { ID: id });
+    console.log(element.data);
+  }
   return (
     <div className="bg-gray-900 antialiased h-screen">
       <button
@@ -98,7 +104,10 @@ export default function adminpageuser({ repo }) {
                 {/* aqui se deberia recorrer la base de datos */}
                 {repo.map((rep) => {
                   return (
-                    <tr className="border-b bg-gray-900 border-gray-700 hover:bg-gray-700 hover:text-white">
+                    <tr
+                      key={rep.ID}
+                      className="border-b bg-gray-900 border-gray-700 hover:bg-gray-700 hover:text-white"
+                    >
                       <td
                         scope="row"
                         className="px-4 py-2 font-medium text-white text-center"
@@ -124,7 +133,8 @@ export default function adminpageuser({ repo }) {
                         {/* descomentar en caso de querer modificar tambien a el administrador */}
                         {/*<Link href='#' className='cursor-pointer p-1 font-medium text-blue-600 hover:underline'>MODIFICAR</Link>*/}
                         <Link
-                          href="#"
+                          onClick={() => handleDelete(rep.ID)}
+                          href=""
                           className="cursor-pointer p-1 font-medium text-red-500 hover:underline"
                         >
                           ELIMINAR
