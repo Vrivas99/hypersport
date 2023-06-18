@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import LeftAside from "@/components/LeftAside";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export const getStaticProps = async () => {
   const res = await fetch("http://localhost:3000/api/auth/usuarios", {
@@ -13,11 +14,18 @@ export const getStaticProps = async () => {
 
 export default function adminpageuser({ repo }) {
   console.log(repo);
-
+  const router = useRouter();
   async function handleDelete(id) {
     const element = await axios.post("api/auth/eliminarusuario", { ID: id });
     console.log(element.data);
+    if (element.status < 300) {
+      refreshData();
+    }
   }
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
+
   return (
     <div className="bg-gray-900 antialiased h-screen">
       <button
