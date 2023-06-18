@@ -1,22 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import LeftAside from "@/components/LeftAside";
 import axios from "axios";
 
-export default function adminpageuser() {
-  const [user, setUser] = useEffect({
-    id: "",
-    name: "",
-    password: "",
-  });
+export const getStaticProps = async () => {
+  const res = await fetch("http://localhost:3000/api/auth/usuarios");
+  const repo = await res.json();
+  return { props: { repo } };
+};
 
-  async function getUsers() {
-    const response = await fetch("/api/auth/usuarios");
-    const data = await response.json();
-    console.log(data);
-  }
-
-  getUsers();
+export default function adminpageuser({ repo }) {
+  console.log(repo);
 
   return (
     <div className="bg-gray-900 antialiased h-screen">
@@ -102,45 +96,43 @@ export default function adminpageuser() {
               </thead>
               <tbody>
                 {/* aqui se deberia recorrer la base de datos */}
-                <tr className="border-b bg-gray-900 border-gray-700 hover:bg-gray-700 hover:text-white">
-                  <td
-                    scope="row"
-                    className="px-4 py-2 font-medium text-white text-center"
-                  >
-                    5
-                  </td>
-                  <td
-                    scope="row"
-                    className="px-4 py-2 font-medium text-white text-center"
-                  >
-                    marc.contreras@duocuc.cl
-                  </td>
-                  <td
-                    scope="row"
-                    className="px-4 py-2 font-medium text-white text-center"
-                  >
-                    Holaola2021+-
-                  </td>
-                  <td
-                    scope="row"
-                    className="px-4 py-2 font-medium text-white text-center"
-                  >
-                    {/* descomentar en caso de querer modificar tambien a el administrador */}
-                    {/*<Link href='#' className='cursor-pointer p-1 font-medium text-blue-600 hover:underline'>MODIFICAR</Link>*/}
-                    <Link
-                      href="#"
-                      className="cursor-pointer p-1 font-medium text-red-500 hover:underline"
-                    >
-                      ELIMINAR
-                    </Link>
-                  </td>
-                </tr>
-
-                {/* 
-                                {items && items.map((item) => (
-                                    <Listaprod key={item.id} item={item} />
-                                ))}
- */}
+                {repo.map((rep) => {
+                  return (
+                    <tr className="border-b bg-gray-900 border-gray-700 hover:bg-gray-700 hover:text-white">
+                      <td
+                        scope="row"
+                        className="px-4 py-2 font-medium text-white text-center"
+                      >
+                        {rep.ID}
+                      </td>
+                      <td
+                        scope="row"
+                        className="px-4 py-2 font-medium text-white text-center"
+                      >
+                        {rep.CORREO}
+                      </td>
+                      <td
+                        scope="row"
+                        className="px-4 py-2 font-medium text-white text-center"
+                      >
+                        {rep.CONTRASENNA}
+                      </td>
+                      <td
+                        scope="row"
+                        className="px-4 py-2 font-medium text-white text-center"
+                      >
+                        {/* descomentar en caso de querer modificar tambien a el administrador */}
+                        {/*<Link href='#' className='cursor-pointer p-1 font-medium text-blue-600 hover:underline'>MODIFICAR</Link>*/}
+                        <Link
+                          href="#"
+                          className="cursor-pointer p-1 font-medium text-red-500 hover:underline"
+                        >
+                          ELIMINAR
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
