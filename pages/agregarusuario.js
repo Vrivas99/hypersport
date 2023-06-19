@@ -1,22 +1,29 @@
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import LeftAside from "@/components/LeftAside";
-import Formarioagregarusuario from "@/components/Formarioagregarusuario";
 import axios from "axios";
+import { Router, useRouter } from "next/router";
 
 export default function agregarusuario() {
-  async function handleSubmit() {
+  const router = useRouter();
+  const correo = useRef();
+  const contra = useRef();
+  const contra2 = useRef();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       const response = await axios.post("/api/auth/agregar", {
-        CORREO: "PRUEBA",
-        CONTRASENNA: "PRUEBA",
-        IDCAT: "1",
+        CORREO: correo.current.value,
+        CONTRASENNA: contra.current.value,
+        IDCAT: 1,
       });
       console.log(response);
+      router.push("/adminpageuser");
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <div className="bg-gray-900 antialiased h-screen ">
@@ -61,6 +68,7 @@ export default function agregarusuario() {
                     Correo
                   </label>
                   <input
+                    ref={correo}
                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-correo"
                     placeholder="user@gmail.com"
@@ -82,6 +90,7 @@ export default function agregarusuario() {
                     Contraseña
                   </label>
                   <input
+                    ref={contra}
                     autoComplete="off"
                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-password"
@@ -104,6 +113,7 @@ export default function agregarusuario() {
                     Confirmar Contraseña
                   </label>
                   <input
+                    ref={contra2}
                     autoComplete="off"
                     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-password2"
@@ -113,24 +123,23 @@ export default function agregarusuario() {
                   ></input>
                 </div>
               </div>
-            </div>
-            <div className="items-center">
-              <Link
-                href="/adminpageuser"
-                className="mt-10 mr-3 flex float-left justify-center cursor-pointer bg-red-600 hover:bg-red-900 text-white px-6 py-2 rounded-md font-sans"
-              >
-                Volver
-              </Link>
-              <button
-                className="mt-10 ml3 flex float-right justify-center cursor-pointer bg-green-600 hover:bg-green-900 text-white px-6 py-2 rounded-md font-sans"
-                type="submit"
-              >
-                Agregar
-              </button>
+              <div className="items-center">
+                <Link
+                  href="/adminpageuser"
+                  className="mt-10 mr-3 flex float-left justify-center cursor-pointer bg-red-600 hover:bg-red-900 text-white px-6 py-2 rounded-md font-sans"
+                >
+                  Volver
+                </Link>
+                <button
+                  className="mt-10 ml3 flex float-right justify-center cursor-pointer bg-green-600 hover:bg-green-900 text-white px-6 py-2 rounded-md font-sans"
+                  type="submit"
+                >
+                  Agregar
+                </button>
+              </div>
             </div>
           </form>
         </div>
-        );
       </div>
     </div>
   );
