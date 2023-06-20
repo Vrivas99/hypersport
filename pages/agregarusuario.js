@@ -27,11 +27,17 @@ export default function agregarusuario() {
         router.push("/adminpageuser");
       } else {
         setShowAlertPas(true);
+        setTimeout(() => {
+          setShowAlertPas(false);
+        }, 2000);
         setShowAlertCor(false);
       }
     } catch (error) {
       console.log(error);
       setShowAlertCor(true);
+      setTimeout(() => {
+        setShowAlertCor(false);
+      }, 2000);
       setShowAlertPas(false);
 
     }

@@ -21,6 +21,9 @@ const adminLog = () => {
       router.push("/adminPage");
     } catch (error) {
       setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 2000);
       router.push("/adminLog");
     }
   };
