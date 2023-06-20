@@ -28,6 +28,9 @@ export default function Login() {
       router.push("/");
     } catch (error) {
       setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 2000);
       router.push("/login");
     }
     /*    const email = emailInput.current.value;
