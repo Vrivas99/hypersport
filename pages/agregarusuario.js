@@ -1,29 +1,42 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Link from "next/link";
 import LeftAside from "@/components/LeftAside";
 import axios from "axios";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
+import { Alert } from "reactstrap";
 
 export default function agregarusuario() {
   const router = useRouter();
   const correo = useRef();
   const contra = useRef();
   const contra2 = useRef();
+  const [showAlertpas, setShowAlertPas] = useState(false);
+  const [showAlertCor, setShowAlertCor] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/auth/agregar", {
-        CORREO: correo.current.value,
-        CONTRASENNA: contra.current.value,
-        IDCAT: 1,
-      });
-      console.log(response);
-      router.push("/adminpageuser");
+      const response = await axios.post("/api/auth/registro", { correo: correo.current.value })
+      if (contra.current.value === contra2.current.value) {
+        const response = await axios.post("/api/auth/agregar", {
+          CORREO: correo.current.value,
+          CONTRASENNA: contra.current.value,
+          IDCAT: 1,
+        });
+        console.log(response);
+        router.push("/adminpageuser");
+      } else {
+        setShowAlertPas(true);
+        setShowAlertCor(false);
+      }
     } catch (error) {
       console.log(error);
+      setShowAlertCor(true);
+      setShowAlertPas(false);
+
     }
   };
+
 
   return (
     <div className="bg-gray-900 antialiased h-screen ">
@@ -137,8 +150,23 @@ export default function agregarusuario() {
                   Agregar
                 </button>
               </div>
+
             </div>
           </form>
+          {showAlertpas && (
+            <div className='bg-red-300 flex justify-center p-2 mt-3 rounded-lg'>
+              <Alert color="danger" className=''>
+                <strong>Las contraseñas deben ser iguales</strong>
+              </Alert>
+            </div>
+          )}
+          {showAlertCor && (
+            <div className='bg-red-300 flex justify-center p-2 mt-3 rounded-lg'>
+              <Alert color="danger" className=''>
+                <strong>Este usuario ya existe</strong>
+              </Alert>
+            </div>
+          )}
         </div>
       </div>
     </div>
