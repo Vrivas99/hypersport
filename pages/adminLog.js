@@ -13,7 +13,7 @@ const adminLog = () => {
   const handleSumbit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/auth/login", {
+      const response = await axios.post("/api/auth/admin", {
         email: emailInput.current.value,
         cont: passwordInput.current.value,
       });

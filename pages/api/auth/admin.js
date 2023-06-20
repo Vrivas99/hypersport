@@ -9,6 +9,23 @@ export default async function adminHandler(req, res) {
     const cor = rows[index].CORREO;
     const con = rows[index].CONTRASENNA;
     if (email == cor && cont == con) {
+      const token = jwt.sign(
+        {
+          exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30,
+          email: email,
+        },
+        "secret"
+      );
+
+      const serialized = serialize("adminTOKEN", token, {
+        httpONly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: 1000 * 60 * 60 * 24 * 30,
+        path: "/",
+      });
+      res.setHeader("Set-Cookie", serialized);
+
       return res.json("login succesfully");
     } else {
       continue;
