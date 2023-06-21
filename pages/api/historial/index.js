@@ -1,4 +1,7 @@
 import { pool } from '../../../config/db'
+import axios from 'axios'
+
+
 
 export default async function handler(req, res) {
     switch (req.method) {
@@ -9,8 +12,17 @@ export default async function handler(req, res) {
     }
 }
 
+async function getProfile() {
+    const response = await axios.get('http://localhost:3000/api/profile');
+    const user = response.data[0];
+    console.log('Usuario logeado:' + user);
+    return user;
+};
+
 const recuperarPagos = async (req, res) => {
-    const [result] = await pool.query(`SELECT * FROM PAGO WHERE USU != ''`)
+
+    /*  const profile = await getProfile(); */
+    const [result] = await pool.query(`SELECT * FROM PAGO WHERE USU = '' `)
     const resultStringify = JSON.stringify(result)
     const resultParse = JSON.parse(resultStringify)
     //-----------------------------------------------------------------
@@ -25,7 +37,7 @@ const alterarEstado = async (req, res) => {
     var { buyOr } = req.body;
     buyOr = String(buyOr)
     const taxt = 'completado'
-    console.log('modificando estado: '+ buyOr);
+    console.log('modificando estado: ' + buyOr);
     const [result] = await pool.query(`UPDATE pago SET estado = ? WHERE buyOrder = ?`, [taxt, buyOr]);
     console.log(result)
     return res.status(200).json('hacciendo patch')

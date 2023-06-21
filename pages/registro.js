@@ -54,10 +54,18 @@ const Registro = () => {
                 console.log(passwordInput.current.value)
                 console.log(passwordInput2.current.value)
                 setShowAlertPas(true);
+                setTimeout(() => {
+                    setShowAlertPas(false);
+                }, 2000);
+                setShowAlertCor(false);
             }
         } catch (e) {
             console.log(e)
             setShowAlertCor(true);
+            setTimeout(() => {
+                setShowAlertCor(false);
+            }, 2000);
+            setShowAlertPas(false);
         }
     }
 

@@ -1,15 +1,15 @@
 import Link from "next/link";
-import React, { useRef } from "react";
-
+import React, { useRef, useState } from "react";
 import axios from "axios";
-
 import { useRouter } from "next/router";
-import { Button } from "reactstrap";
+import { Alert, Button } from "reactstrap";
 
 const adminLog = () => {
   const router = useRouter();
   const emailInput = useRef();
   const passwordInput = useRef();
+  const [showAlert, setShowAlert] = useState(false);
+
   const handleSumbit = async (e) => {
     e.preventDefault();
     try {
@@ -20,7 +20,10 @@ const adminLog = () => {
       console.log(response);
       router.push("/adminPage");
     } catch (error) {
-      console.log(`Aqui : ${error}`);
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 2000);
       router.push("/adminLog");
     }
   };
@@ -40,7 +43,7 @@ const adminLog = () => {
               htmlFor="email"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
-              Usuario
+              Correo
             </label>
             <input
               ref={emailInput}
@@ -75,6 +78,14 @@ const adminLog = () => {
               Ingresar
             </Button>
           </div>
+          {showAlert && (
+            <div className="bg-red-300 flex justify-center p-2 mt-2 rounded-lg">
+              <Alert color="danger" className="">
+                <strong>Correo o contraseña incorrecta</strong>
+              </Alert>
+            </div >
+          )
+          }
         </form>
       </div>
     </div>

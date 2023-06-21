@@ -9,7 +9,6 @@ export default function profileHandler(req, res) {
     }
     try {
         const user = verify(myTokenName, 'secret')
-        console.log(user.email)
 
         return res.json({ user: user.email })
     } catch (error) {
