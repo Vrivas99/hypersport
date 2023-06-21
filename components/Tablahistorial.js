@@ -26,29 +26,27 @@ const Tablahistorial = ({ pago }) => {
 
 
   return (
-    <>
-      <tr className='border bg-white border-gray-700 hover:bg-gray-200 hover:text-white'>
-        <td scope='row' className='px-4 py-1 font-medium text-black text-center'>
-          {pago.buyOrder}
-        </td>
 
-        <td scope='row' className='text-center px-4 py-1 font-medium text-black'>
-          ${pago.PRECIO}
-        </td>
+    <tr className='border bg-white border-gray-700 hover:bg-gray-200 hover:text-white'>
+      <td scope='row' className='px-4 py-1 font-medium text-black text-center'>
+        {pago.buyOrder}
+      </td>
 
-        <td scope='row' className='text-center px-4 py-1 font-medium text-black'>
-          {pago.fecha}
-        </td>
-        <td scope='row' className='text-center px-4 py-1 font-medium text-black'>
-          <button
-            className='text-purple-500 hover:underline focus:outline-none' onClick={() => handleExpandRow(0)}>
-            {isRowExpanded(0) ? 'Menos Detalles' : 'Mas Detalles'}
-          </button>
-        </td>
-      </tr>
-    </>
+      <td scope='row' className='text-center px-4 py-1 font-medium text-black'>
+        ${pago.PRECIO}
+      </td>
+
+      <td scope='row' className='text-center px-4 py-1 font-medium text-black'>
+        {pago.fecha}
+      </td>
+      <td scope='row' className='text-center px-4 py-1 font-medium text-black'>
+        <button
+          className='text-purple-500 hover:underline focus:outline-none' onClick={() => handleExpandRow(0)}>
+          {isRowExpanded(0) ? 'Menos Detalles' : 'Mas Detalles'}
+        </button>
+      </td>
+    </tr>
   )
 }
-
 export default Tablahistorial
 

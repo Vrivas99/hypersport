@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '@/components/Navbar'
-import Tablahistorial from '@/components/Tablahistorial'
 import { getPagos, getPagitos } from '@/services/itemService'
+
+//ya no se estan usando
 import Pagitos from '@/components/Pagitos'
+import Tablahistorial from '@/components/Tablahistorial'
 
 const historial = ({ pagos, pagitos }) => {
 
@@ -21,8 +23,6 @@ const historial = ({ pagos, pagitos }) => {
       setExpandedRows([...expandedRows, row]);
     }
   };
-
-
 
   // Función para verificar si una fila está expandida
   const isRowExpanded = (row) => {
@@ -53,35 +53,54 @@ const historial = ({ pagos, pagitos }) => {
             </tr>
           </thead>
           <tbody>
+            {/* Filas principales */}
+            {pagos && pagos.map((pago) => (
+              <tr className='border bg-white border-gray-700 hover:bg-gray-200 hover:text-white'>
+                <td scope='row' className='px-4 py-1 font-medium text-black text-center'>
+                  {pago.buyOrder}
+                </td>
+                <td scope='row' className='text-center px-4 py-1 font-medium text-black'>
+                  ${pago.PRECIO}
+                </td>
+                <td scope='row' className='text-center px-4 py-1 font-medium text-black'>
+                  {pago.fecha}
+                </td>
+                <td scope='row' className='text-center px-4 py-1 font-medium text-black'>
+                  <button
+                    className='text-purple-500 hover:underline focus:outline-none' onClick={() => handleExpandRow(0)}>
+                    {isRowExpanded(0) ? 'Menos Detalles' : 'Mas Detalles'}
+                  </button>
+                </td>
+              </tr>
 
-              {pagos && pagos.map((pago) => (
-                <>
-                  <Tablahistorial pago={pago} key={pago.buyOrder} />
-                </>
-              ))}
-            {/* Filas adicionales si la fila principal está expandida */}
+            ))}
+            {/* TODO ESTO DEBERIA ESTAR POR CADA ORDEN DE COMPRA*/}
+            {/* SOLO SE RENDERIZA LOS PRODUCTOS DE LA PRIMERA ORDEN DE COMPRA */}
             {isRowExpanded(0) && (
               <>
                 {/* Fila con encabezados adicionales */}
-                <tr className='border bg-gray-300'>
-                  <td className='px-4 py-2 text-black font-bold text-center'>ID</td>
-                  <td className='px-4 py-2  text-black font-bold text-center'>NOMBRE</td>
-                  <td className='px-4 py-2 text-black font-bold text-center'>CANTIDAD</td>
-                  <td className='px-4 py-2 text-black font-bold text-center'>PRECIO</td>
+                < tr className='border bg-gray-300'>
+                  <th className='px-4 py-2 text-black font-bold text-center'>ID</th>
+                  <th className='px-4 py-2  text-black font-bold text-center'>NOMBRE</th>
+                  <th className='px-4 py-2 text-black font-bold text-center'>CANTIDAD</th>
+                  <th className='px-4 py-2 text-black font-bold text-center'>PRECIO</th>
                 </tr>
-
                 {/* Fila con información adicional */}
-                <tr className='border bg-gray-200'>
-                  {pagitos && pagitos.map((pagito) => (
-                    <Pagitos pagito={pagito} key={pagito.ide} />
-                  ))}
-                </tr>
+                {pagitos && pagitos.map((pagito) => (
+                  <tr className='border bg-gray-200'>
+                    <td className='px-4 py-2 text-gray-700  text-center'>{pagito.ide}</td>
+                    <td className='px-4 py-2 text-gray-700  text-center'>{pagito.titulo}</td>
+                    <td className='px-4 py-2 text-gray-700  text-center'>{pagito.qty}</td>
+                    <td className='px-4 py-2 text-gray-700  text-center'>{pagito.precio}</td>
+                  </tr>
+                ))}
               </>
             )}
+            {/* Filas adicionales si la fila principal está expandida */}
           </tbody>
         </table>
       </div>
-    </div>
+    </div >
   )
 }
 
