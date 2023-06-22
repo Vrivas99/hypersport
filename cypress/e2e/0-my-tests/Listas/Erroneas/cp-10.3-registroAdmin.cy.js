@@ -1,7 +1,7 @@
 import 'cypress-real-events'
-describe('Agregar un administrador correctamente', () => {
+describe('Agregar un administrador con contraseñas', () => {
     it('passes', () => {
-        /* 
+         
         //Visito el login del administrador 
         cy.visit('http://localhost:3000/adminLog')
 
@@ -16,9 +16,6 @@ describe('Agregar un administrador correctamente', () => {
 
         //valido que el url sea el correcto
         cy.url().should('include', '/adminPage')
-         */
-        //visito la pagina de administrador
-        cy.visit('http://localhost:3000/adminPage')
 
         //pulso el boton de administradores
         cy.wait(1000)
@@ -31,7 +28,7 @@ describe('Agregar un administrador correctamente', () => {
         //escribo el correo y la contraseña del administrador
         cy.wait(1000)
         
-        cy.get('#grid-correo').type('admin2@test.cl')
+        cy.get('#grid-correo').type('admin3@test.cl')
         cy.get('#grid-password').type('1234567')
         cy.get('#grid-password2').type('123456')
 
@@ -39,8 +36,8 @@ describe('Agregar un administrador correctamente', () => {
         cy.wait(1000)
         cy.contains('Agregar').click()
 
-        //valido si los campos son invalidos (en este caso valido el invalid del required)
-        cy.get(':invalid').should('exist')
+        //valido si los campos son de las contraseñas son iguales
+        cy.contains('Las contraseñas deben ser iguales').should('exist')
 
         
     })
