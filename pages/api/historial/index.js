@@ -1,4 +1,5 @@
 import { pool } from "../../../config/db";
+import axios from "axios";
 
 export default async function handler(req, res) {
   switch (req.method) {
@@ -10,18 +11,18 @@ export default async function handler(req, res) {
 }
 
 const recuperarPagos = async (req, res) => {
-  const [result] = await pool.query(
-    `SELECT * FROM PAGO WHERE USU = 'hy.bustos@duocuc.cl' `
-  );
-  const resultStringify = JSON.stringify(result);
-  const resultParse = JSON.parse(resultStringify);
-  //-----------------------------------------------------------------
-  //Si quieres comprobar un valor en especifico descomenta esta parte
-  //const pos = resultParse.map(val => val.NOMBRE).indexOf('PRUEBA')
-  //console.log(resultParse[pos].IMG)
-  //-----------------------------------------------------------------
-  return res.status(200).json(resultParse);
-};
+
+    /*  const profile = await getProfile(); */
+    const [result] = await pool.query(`SELECT * FROM PAGO`)
+    const resultStringify = JSON.stringify(result)
+    const resultParse = JSON.parse(resultStringify)
+    //-----------------------------------------------------------------
+    //Si quieres comprobar un valor en especifico descomenta esta parte
+    //const pos = resultParse.map(val => val.NOMBRE).indexOf('PRUEBA')
+    //console.log(resultParse[pos].IMG)
+    //-----------------------------------------------------------------
+    return res.status(200).json(resultParse)
+}
 
 const alterarEstado = async (req, res) => {
   var { buyOr } = req.body;
@@ -33,5 +34,5 @@ const alterarEstado = async (req, res) => {
     [taxt, buyOr]
   );
   console.log(result);
-  return res.status(200).json("hacciendo patch");
+  return res.status(200).json("haciendo patch");
 };
