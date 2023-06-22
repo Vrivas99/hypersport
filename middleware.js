@@ -19,16 +19,20 @@ export function middleware(request) {
     if (jwt == undefined) {
       return NextResponse.redirect(new URL("/adminLog", request.url));
     } else {
+      console.log("validado");
     }
   } else {
+    console.log("log del primer else");
   }
 
-  if (request.nextUrl.pathname.includes("/historial")) {
+/* if (request.nextUrl.pathname.includes("/historial")) {
     if (zwt == undefined) {
       return NextResponse.redirect(new URL("/login", request.url));
     } else {
+      console.log("validado");
     }
   } else {
-  }
+    console.log("no validado");
+  }  */
   return NextResponse.next();
 }
