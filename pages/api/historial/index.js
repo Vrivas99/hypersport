@@ -11,18 +11,15 @@ export default async function handler(req, res) {
 }
 
 const recuperarPagos = async (req, res) => {
+  const [result] = await pool.query(`SELECT * FROM PAGO`);
+  return res.status(200).json(result);
 
-    /*  const profile = await getProfile(); */
-    const [result] = await pool.query(`SELECT * FROM PAGO`)
-    const resultStringify = JSON.stringify(result)
-    const resultParse = JSON.parse(resultStringify)
-    //-----------------------------------------------------------------
-    //Si quieres comprobar un valor en especifico descomenta esta parte
-    //const pos = resultParse.map(val => val.NOMBRE).indexOf('PRUEBA')
-    //console.log(resultParse[pos].IMG)
-    //-----------------------------------------------------------------
-    return res.status(200).json(resultParse)
-}
+  //-----------------------------------------------------------------
+  //Si quieres comprobar un valor en especifico descomenta esta parte
+  //const pos = resultParse.map(val => val.NOMBRE).indexOf('PRUEBA')
+  //console.log(resultParse[pos].IMG)
+  //-----------------------------------------------------------------
+};
 
 const alterarEstado = async (req, res) => {
   var { buyOr } = req.body;
@@ -30,7 +27,7 @@ const alterarEstado = async (req, res) => {
   const taxt = "completado";
   console.log("modificando estado: " + buyOr);
   const [result] = await pool.query(
-    `UPDATE pago SET estado = ? WHERE buyOrder = ?`,
+    `UPDATE PAGO SET estado = ? WHERE buyOrder = ?`,
     [taxt, buyOr]
   );
   console.log(result);

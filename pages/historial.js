@@ -1,17 +1,31 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import { getPagos, getPagitos } from "@/services/itemService";
+import { NextResponse } from "next/server";
 
 //ya no se estan usando
 import Pagitos from "@/components/Pagitos";
 import Tablahistorial from "@/components/Tablahistorial";
 import axios from "axios";
 
-const historial = ({ pagos, detalle }) => {
+export async function getStaticProps(request) {
+  const res = await getPagos();
+  const res2 = await getPagitos();
+  return {
+    props: {
+      pagos: res,
+      detalle: res2,
+    },
+  };
+}
+
+export default function historial({ pagos, detalle }) {
   const [user, setUser] = useState();
 
   // Estado para almacenar las filas expandidas
   const [expandedRows, setExpandedRows] = useState([]);
+  const [data, setData] = useState(null);
+  const [isLoading, setLoading] = useState(false);
 
   // Función para manejar la expansión de una fila
   const handleExpandRow = (row) => {
@@ -34,22 +48,20 @@ const historial = ({ pagos, detalle }) => {
   };
   const getProfile = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/profile')
-      console.log('logeado como:' + response.data.user)
-      setUser(response.data.user)
-      console.log(response.data.user)
+      const response = await axios.get("http://localhost:3000/api/profile");
+      console.log("logeado como:" + response.data.user);
+      setUser(response.data.user);
     } catch (error) {
-      console.log(error)
-      setUser('')
+      console.log(error);
+      setUser("");
     }
-  }
+  };
+
   useEffect(() => {
     getProfile();
   }, []);
 
-  const filtroPago = pagos.filter(pago => pago.usu === user)
-
-
+  const filtroPago = pagos.filter((pago) => pago.usu === user);
 
   return (
     <div>
@@ -76,81 +88,81 @@ const historial = ({ pagos, detalle }) => {
           </thead>
           <tbody>
             {/* Filas principales */}
-            {filtroPago && filtroPago.map((pago) => (
-              <>
-                <tr className="border bg-white border-gray-700 hover:bg-gray-200 hover:text-white">
-                  <td
-                    scope="row"
-                    className="px-4 py-1 font-medium text-black text-center"
-                  >
-                    {pago.buyOrder}
-                  </td>
-                  <td
-                    scope="row"
-                    className="text-center px-4 py-1 font-medium text-black"
-                  >
-                    ${pago.PRECIO}
-                  </td>
-                  <td
-                    scope="row"
-                    className="text-center px-4 py-1 font-medium text-black"
-                  >
-                    {pago.fecha}
-                  </td>
-                  <td
-                    scope="row"
-                    className="text-center px-4 py-1 font-medium text-black"
-                  >
-                    <button
-                      className="text-purple-500 hover:underline focus:outline-none"
-                      onClick={() => handleExpandRow(0)}
+            {filtroPago &&
+              filtroPago.map((pago) => (
+                <>
+                  <tr className="border bg-white border-gray-700 hover:bg-gray-200 hover:text-white">
+                    <td
+                      scope="row"
+                      className="px-4 py-1 font-medium text-black text-center"
                     >
-                      {isRowExpanded(0) ? "- Detalles" : "+ Detalles"}
-                    </button>
-                  </td>
-                </tr>
-                {isRowExpanded(0) && (
-                  <>
-                    {/* Fila con encabezados adicionales */}
-                    <tr className="border bg-gray-300">
-                      <th className="px-4 py-2 text-black font-bold text-center">
-                        ID
-                      </th>
-                      <th className="px-4 py-2  text-black font-bold text-center">
-                        NOMBRE
-                      </th>
-                      <th className="px-4 py-2 text-black font-bold text-center">
-                        CANTIDAD
-                      </th>
-                      <th className="px-4 py-2 text-black font-bold text-center">
-                        PRECIO
-                      </th>
-                    </tr>
-                    {/* Fila con información adicional */}
+                      {pago.buyOrder}
+                    </td>
+                    <td
+                      scope="row"
+                      className="text-center px-4 py-1 font-medium text-black"
+                    >
+                      ${pago.PRECIO}
+                    </td>
+                    <td
+                      scope="row"
+                      className="text-center px-4 py-1 font-medium text-black"
+                    >
+                      {pago.fecha}
+                    </td>
+                    <td
+                      scope="row"
+                      className="text-center px-4 py-1 font-medium text-black"
+                    >
+                      <button
+                        className="text-purple-500 hover:underline focus:outline-none"
+                        onClick={() => handleExpandRow(0)}
+                      >
+                        {isRowExpanded(0) ? "- Detalles" : "+ Detalles"}
+                      </button>
+                    </td>
+                  </tr>
+                  {isRowExpanded(0) && (
+                    <>
+                      {/* Fila con encabezados adicionales */}
+                      <tr className="border bg-gray-300">
+                        <th className="px-4 py-2 text-black font-bold text-center">
+                          ID
+                        </th>
+                        <th className="px-4 py-2  text-black font-bold text-center">
+                          NOMBRE
+                        </th>
+                        <th className="px-4 py-2 text-black font-bold text-center">
+                          CANTIDAD
+                        </th>
+                        <th className="px-4 py-2 text-black font-bold text-center">
+                          PRECIO
+                        </th>
+                      </tr>
+                      {/* Fila con información adicional */}
 
-                    {
-                      detalle.filter(det => det.bOr === pago.buyOrder).map((det) => (
-                        <tr className="border bg-gray-200">
-                          <td className="px-4 py-2 text-gray-700  text-center">
-                            {det.ide}
-                          </td>
-                          <td className="px-4 py-2 text-gray-700  text-center">
-                            {det.titulo}
-                          </td>
-                          <td className="px-4 py-2 text-gray-700  text-center">
-                            {det.qty}
-                          </td>
-                          <td className="px-4 py-2 text-gray-700  text-center">
-                            {det.precio}
-                          </td>
-                        </tr>
-                      ))
-                    }
-                  </>
-                )}
-              </>
-
-            ))}
+                      {detalle
+                        .filter((det) => det.bOr === pago.buyOrder)
+                        .map((det) => (
+                          <tr className="border bg-gray-200">
+                            <td className="px-4 py-2 text-gray-700  text-center">
+                              {det.ide}
+                            </td>
+                            <td className="px-4 py-2 text-gray-700  text-center">
+                              {det.titulo}
+                            </td>
+                            <td className="px-4 py-2 text-gray-700  text-center">
+                              {det.qty}
+                            </td>
+                            <td className="px-4 py-2 text-gray-700  text-center">
+                              {det.precio}
+                            </td>
+                          </tr>
+                        ))}
+                    </>
+                  )}
+                </>
+              ))}
             {/* TODO ESTO DEBERIA ESTAR POR CADA ORDEN DE COMPRA*/}
             {/* SOLO SE RENDERIZA LOS PRODUCTOS DE LA PRIMERA ORDEN DE COMPRA */}
 
@@ -159,19 +171,5 @@ const historial = ({ pagos, detalle }) => {
         </table>
       </div>
     </div>
-  )
-}
-
-export default historial
-
-export async function getStaticProps() {
-
-  const res = await getPagos();
-  const res2 = await getPagitos();
-  return {
-    props: {
-      pagos: res,
-      detalle: res2,
-    },
-  };
+  );
 }

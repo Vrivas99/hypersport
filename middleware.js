@@ -22,10 +22,9 @@ export function middleware(request) {
       console.log("validado");
     }
   } else {
-    console.log("log del primer else");
   }
 
-/* if (request.nextUrl.pathname.includes("/historial")) {
+  /* if (request.nextUrl.pathname.includes("/historial")) {
     if (zwt == undefined) {
       return NextResponse.redirect(new URL("/login", request.url));
     } else {
@@ -34,5 +33,6 @@ export function middleware(request) {
   } else {
     console.log("no validado");
   }  */
+
   return NextResponse.next();
 }
