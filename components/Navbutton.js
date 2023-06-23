@@ -44,7 +44,7 @@ const Navbutton = () => {
       <div className="flex justify-center space-x-3">
         {user == "" ? (
           <Link
-            href="login"
+            href="/login"
             className="text-center bg-purple-600 align-middle hover:bg-purple-900 text-white px-6 py-2 rounded-full font-sans"
           >
             Ingresar

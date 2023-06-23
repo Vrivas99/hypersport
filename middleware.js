@@ -22,10 +22,10 @@ export function middleware(request) {
     }
   }
 
-  /*   if (request.nextUrl.pathname.includes("/historial")) {
-      if (zwt == undefined) {
-        return NextResponse.redirect(new URL("/login", request.url));
-      }
-    } */
+  if (request.nextUrl.pathname.includes("/historial")) {
+    if (zwt == undefined) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+  }
   return NextResponse.next();
 }
