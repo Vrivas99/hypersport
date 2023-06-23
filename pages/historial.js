@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import { getPagos, getPagitos } from "@/services/itemService";
 import axios from "axios";
 
-const historial = () => {
+export default function historial() {
   const [user, setUser] = useState();// Estado para almacenar el usuario logeado
   const [pagos, setPagos] = useState([]);// Estado para almacenar los pagos
   const [detalle, setPagitos] = useState([]);// Estado para almacenar los detalles de los pagos
@@ -156,3 +156,4 @@ const historial = () => {
     </div>
   );
 }
+
