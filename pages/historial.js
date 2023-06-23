@@ -24,13 +24,12 @@ const historial = () => {
   //Metodo para recuperar el usuario logeado
   const getProfile = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/profile')
-      console.log('logeado como:' + response.data.user)
-      setUser(response.data.user)
-      console.log(response.data.user)
+      const response = await axios.get("http://localhost:3000/api/profile");
+      console.log("logeado como:" + response.data.user);
+      setUser(response.data.user);
     } catch (error) {
-      console.log(error)
-      setUser('')
+      console.log(error);
+      setUser("");
     }
   }
   //Metodo para recuperar los pagos y detalles de la bd
@@ -155,29 +154,5 @@ const historial = () => {
         </table>
       </div>
     </div>
-  )
+  );
 }
-
-export default historial
-
-/* export async function getServerSideProps(context) {
-  try {
-    const res = await getPagos();
-    const res2 = await getPagitos();
-
-    return {
-      props: {
-        pagos: res,
-        detalle: res2,
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return {
-      props: {
-        pagos: null,
-        detalle: null,
-      },
-    };
-  }
-} */

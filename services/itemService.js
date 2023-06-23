@@ -1,38 +1,41 @@
 function getMultipleRandom(arr, num) {
-    const shuffled = [...arr].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, num);
+  const shuffled = [...arr].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, num);
 }
 // Este servicio administra los fetch de las APIS y Responses para productos
 export async function getItemsINDEX() {
-    // JSON LOCAL: Esta linea hace fetch del json local por si no tienes la bd
-    // const request = await fetch('http://localhost:3000/api/test_items/items')
-    // BASE DE DATOS: Esta linea usa la API para la bd (necesitas mysql)
-    const request = await fetch('http://localhost:3000/api/mysql')
-    const items = await request.json()
-    return getMultipleRandom(items, 8);
+  // JSON LOCAL: Esta linea hace fetch del json local por si no tienes la bd
+  // const request = await fetch('http://localhost:3000/api/test_items/items')
+  // BASE DE DATOS: Esta linea usa la API para la bd (necesitas mysql)
+  const request = await fetch("http://localhost:3000/api/mysql");
+  const items = await request.json();
+  return getMultipleRandom(items, 8);
 }
 
 export async function getItems() {
-    const request = await fetch('http://localhost:3000/api/mysql')
-    const items = await request.json()
-    return items;
+  const request = await fetch("http://localhost:3000/api/mysql");
+  const items = await request.json();
+  return items;
 }
 
-
 export async function getLatestsItems() {
-    const items = await getItems()
+  const items = await getItems();
 
-    return items.slice(0, 3)
+  return items.slice(0, 3);
 }
 
 export async function getPagos() {
-    const response = await fetch('http://localhost:3000/api/historial')
-    const pagos = await response.json()
-    return pagos;
+  const request = await fetch("http://localhost:3000/api/historial");
+  const pagos = await request.json();
+  return pagos;
 }
 
 export async function getPagitos() {
-    const response = await fetch('http://localhost:3000/api/detalle')
-    const pagito = await response.json()
+  try {
+    const request = await fetch("http://localhost:3000/api/detalle");
+    const pagito = await request.json();
     return pagito;
+  } catch (error) {
+    console.log(error);
+  }
 }
