@@ -3,32 +3,25 @@ import Navbar from "@/components/Navbar";
 import { getPagos, getPagitos } from "@/services/itemService";
 import axios from "axios";
 
-const historial = ({ pagos, detalle }) => {
-  const [user, setUser] = useState();
+const historial = () => {
+  const [user, setUser] = useState();// Estado para almacenar el usuario logeado
+  const [pagos, setPagos] = useState([]);// Estado para almacenar los pagos
+  const [detalle, setPagitos] = useState([]);// Estado para almacenar los detalles de los pagos
+  const [expandedRows, setExpandedRows] = useState([]);// Estado para almacenar las filas expandidas
 
-  // Estado para almacenar las filas expandidas
-  const [expandedRows, setExpandedRows] = useState([]);
-
-  // Función para manejar el click en una fila
-  const handleRowClick = (index) => {
-
+  const handleRowClick = (index) => {// Función para manejar el click en una fila
     const updatedRows = [...expandedRows];
     const rowIndex = updatedRows.indexOf(index);
-    // Si la fila está expandida, la eliminamos del array
-    if (rowIndex !== -1) {
-
+    if (rowIndex !== -1) {// Si la fila está expandida, la eliminamos del array
       updatedRows.splice(rowIndex, 1);
-      // Si no está expandida, la agregamos al array
-    } else {
+    } else {// Si no está expandida, la agregamos al array
       updatedRows.push(index);
     }
-    // Actualizamos el estado
-    setExpandedRows(updatedRows);
+    setExpandedRows(updatedRows);// Actualizamos el estado
   };
-  // Función para determinar si una fila está expandida
-  const isRowExpanded = (index) => expandedRows.includes(index);
+  const isRowExpanded = (index) => expandedRows.includes(index);// Función para determinar si una fila está expandida
 
-
+  //Metodo para recuperar el usuario logeado
   const getProfile = async () => {
     try {
       const response = await axios.get('http://localhost:3000/api/profile')
@@ -40,10 +33,20 @@ const historial = ({ pagos, detalle }) => {
       setUser('')
     }
   }
+  //Metodo para recuperar los pagos y detalles de la bd
   useEffect(() => {
+    const fetchData = async () => {
+      const pagosData = await getPagos();
+      const pagitosData = await getPagitos();
+      setPagos(pagosData);
+      setPagitos(pagitosData);
+    };
+    fetchData();
+    //Metodo para recuperar el usuario logeado
     getProfile();
   }, []);
 
+  //Filtro para mostrar solo los pagos del usuario logeado
   const filtroPago = pagos.filter(pago => pago.usu === user)
 
 
@@ -157,7 +160,7 @@ const historial = ({ pagos, detalle }) => {
 
 export default historial
 
-export async function getServerSideProps(context) {
+/* export async function getServerSideProps(context) {
   try {
     const res = await getPagos();
     const res2 = await getPagitos();
@@ -177,4 +180,4 @@ export async function getServerSideProps(context) {
       },
     };
   }
-}
+} */
