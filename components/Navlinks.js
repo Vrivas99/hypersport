@@ -6,14 +6,14 @@ const Navlinks = () => {
         {
             name: 'Deportes', submenu: true, sublink: [{
                 sublink: [
-                    { name: 'Futbol', link: '/pagesCat/futbol' },
-                    { name: 'Tenis', link: '/pagesCat/tenis' },
-                    { name: 'Basquetbol', link: '/pagesCat/basquet' },
-                    { name: 'Voleibol', link: '/pagesCat/volei' },
-                    { name: 'Golf', link: '/pagesCat/golf' },
-                    { name: 'Hockey', link: '/pagesCat/hockey' },
-                    { name: 'Ciclismo', link: '/pagesCat/ciclismo' },
-                    { name: 'Baseball', link: '/pagesCat/baseball' },
+                    { name: 'Futbol', link: '/futbol' },
+                    { name: 'Tenis', link: '/tenis' },
+                    { name: 'Basquetbol', link: '/basquet' },
+                    { name: 'Voleibol', link: '/volei' },
+                    { name: 'Golf', link: '/golf' },
+                    { name: 'Hockey', link: '/hockey' },
+                    { name: 'Ciclismo', link: '/ciclismo' },
+                    { name: 'Baseball', link: '/baseball' },
                 ]
 
             }]
@@ -21,7 +21,7 @@ const Navlinks = () => {
         {
             name: 'Otros', submenu: true, sublink: [{
                 sublink: [
-                    { name: 'Ofertas', link: '/pagesCat/ofertas' },
+                    { name: 'Ofertas', link: '/ofertas' },
                 ]
             }]
         }]
