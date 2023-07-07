@@ -28,18 +28,18 @@ const Footer = () => {
                 <div className='p-5'>
                     <ul>
                         <p className='text-white font-bold text-2xl pb-4'>Deportes</p>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/futbol">Futbol</Link></li>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/basquet">Basquetbol</Link></li>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/ciclismo">Ciclismo</Link></li>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/volei">Voleibol</Link></li>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/futbol">Futbol</Link></li>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/basquet">Basquetbol</Link></li>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/ciclismo">Ciclismo</Link></li>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/volei">Voleibol</Link></li>
                     </ul>
                 </div>
                 <div className='p-5'>
                     <ul className='pt-12'>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/tenis">Tenis</Link></li>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/golf">Golf</Link></li>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/hockey">Hockey</Link></li>
-                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/pagesCat/baseball">Baseball</Link></li>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/tenis">Tenis</Link></li>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/golf">Golf</Link></li>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/hockey">Hockey</Link></li>
+                        <li className='text-white text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer'><Link href="/baseball">Baseball</Link></li>
                     </ul>
                 </div>
                 <div className='p-5'>
