@@ -41,15 +41,8 @@ const Navbutton = () => {
 
   return (
     <div className="flex justify-center space-x-3">
-      <div className="flex justify-center space-x-3">
-        {user == "" ? (
-          <Link
-            href="/login"
-            className="text-center bg-purple-600 align-middle hover:bg-purple-900 text-white px-6 py-2 rounded-full font-sans"
-          >
-            Ingresar
-          </Link>
-        ) : (
+      {user != "" ?
+        <>
           <Link
             onClick={() => logout()}
             href=""
@@ -57,22 +50,22 @@ const Navbutton = () => {
           >
             Cerrar Sesion
           </Link>
-        )}
-      </div>
-      <div className="flex justify-center space-x-3">
-        {user != "" ? (
           <Link
             href="/historial"
             className="text-center bg-purple-600 align-middle hover:bg-purple-900 text-white px-6 py-2 rounded-full font-sans"
           >
             Historial
           </Link>
-        ) : (
-          <Link href="" className="hidden">
-            no mostrar
+        </>
+        :
+        <>
+          <Link
+            href="/login"
+            className="text-center bg-purple-600 align-middle hover:bg-purple-900 text-white px-6 py-2 rounded-full font-sans"
+          >
+            Ingresar
           </Link>
-        )}
-      </div>
+        </>}
       <Link
         onClick={handleOpenCart}
         href=""
