@@ -14,6 +14,7 @@ describe('Modificar un producto', () => {
         cy.contains('Ingresar').click()
 
         //valido que el url sea el correcto
+        cy.wait(2000)
         cy.url().should('include', '/adminPage')
 
         //pulso el boton de modificar
@@ -64,6 +65,7 @@ describe('Modificar un producto', () => {
         cy.contains('Guardar').realClick()
 
         //valido que el producto se haya modificado
+        cy.wait(2000)
         cy.contains('Raqueta de Grafito Sufix Encounter1').should('exist')
     })
 

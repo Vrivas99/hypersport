@@ -14,7 +14,7 @@ describe('Navegar entre las categorias del navbar', () => {
 
         //compruebo que la url es la correcta
         cy.wait(1800)
-        cy.url().should('include', '/pagesCat/futbol')
+        cy.url().should('include', '/futbol')
 
         //pongo el raton sobre el boton de deportes para que se abra el menu
         cy.wait(1800)
@@ -26,7 +26,7 @@ describe('Navegar entre las categorias del navbar', () => {
 
         //compruebo que la url es la correcta
         cy.wait(1800)
-        cy.url().should('include', '/pagesCat/tenis')
+        cy.url().should('include', '/tenis')
 
         //pongo el raton sobre el boton de deportes para que se abra el menu
         cy.wait(1800)
@@ -38,7 +38,7 @@ describe('Navegar entre las categorias del navbar', () => {
 
         //compruebo que la url es la correcta
         cy.wait(1800)
-        cy.url().should('include', '/pagesCat/basquet')
+        cy.url().should('include', '/basquet')
 
         //pongo el raton sobre el boton de deportes para que se abra el menu
         cy.wait(1800)
@@ -50,7 +50,7 @@ describe('Navegar entre las categorias del navbar', () => {
 
         //compruebo que la url es la correcta
         cy.wait(1800)
-        cy.url().should('include', '/pagesCat/volei')
+        cy.url().should('include', '/volei')
 
         //pongo el raton sobre el boton de deportes para que se abra el menu
         cy.wait(1800)
@@ -62,7 +62,7 @@ describe('Navegar entre las categorias del navbar', () => {
 
         //compruebo que la url es la correcta
         cy.wait(1800)
-        cy.url().should('include', '/pagesCat/golf')
+        cy.url().should('include', '/golf')
 
         //pongo el raton sobre el boton de deportes para que se abra el menu
         cy.wait(1800)
@@ -73,7 +73,7 @@ describe('Navegar entre las categorias del navbar', () => {
         cy.contains('Hockey').realClick()
 
         //compruebo que la url es la correcta
-        cy.url().should('include', '/pagesCat/hockey')
+        cy.url().should('include', '/hockey')
 
         //pongo el raton sobre el boton de deportes para que se abra el menu
         cy.wait(1800)
@@ -85,7 +85,7 @@ describe('Navegar entre las categorias del navbar', () => {
  
         //compruebo que la url es la correcta
         cy.wait(1800)
-        cy.url().should('include', '/pagesCat/ciclismo')
+        cy.url().should('include', '/ciclismo')
 
         //pongo el raton sobre el boton de deportes para que se abra el menu
         cy.wait(1800)
@@ -97,7 +97,7 @@ describe('Navegar entre las categorias del navbar', () => {
 
         //compruebo que la url es la correcta
         cy.wait(1800)
-        cy.url().should('include', '/pagesCat/baseball')
+        cy.url().should('include', '/baseball')
 
         //pongo el raton sobre el boton de otros para que se abra el menu
         cy.wait(1800)
@@ -109,7 +109,7 @@ describe('Navegar entre las categorias del navbar', () => {
 
         //compruebo que la url es la correcta
         cy.wait(1800)
-        cy.url().should('include', '/pagesCat/ofertas')
+        cy.url().should('include', '/ofertas')
 
         //hago click en el boton home para volver a la pagina de inicio
         cy.wait(1800)

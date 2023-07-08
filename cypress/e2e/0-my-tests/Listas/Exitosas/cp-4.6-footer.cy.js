@@ -10,7 +10,7 @@ describe('Navegacion footer', () => {
 
         //compruebo que el url sea el correcto
         cy.wait(1500)
-        cy.url().should('include', '/pagesCat/futbol')
+        cy.url().should('include', '/futbol')
         
         //bajo hasta el footer
         cy.wait(1500)
@@ -22,7 +22,7 @@ describe('Navegacion footer', () => {
         
         //compruebo que el url sea el correcto
         cy.wait(1500)
-        cy.url().should('include', '/pagesCat/tenis')
+        cy.url().should('include', '/tenis')
 
         //bajo hasta el footer
         cy.wait(1500)
@@ -34,7 +34,7 @@ describe('Navegacion footer', () => {
 
         //compruebo que el url sea el correcto
         cy.wait(1500)
-        cy.url().should('include', '/pagesCat/basquet')
+        cy.url().should('include', '/basquet')
 
         //bajo hasta el footer
         cy.wait(1500)
@@ -46,7 +46,7 @@ describe('Navegacion footer', () => {
 
         //compruebo que el url sea el correcto
         cy.wait(1500)
-        cy.url().should('include', '/pagesCat/volei')
+        cy.url().should('include', '/volei')
 
         //bajo hasta el footer
         cy.wait(1500)
@@ -58,7 +58,7 @@ describe('Navegacion footer', () => {
 
         //compruebo que el url sea el correcto
         cy.wait(1500)
-        cy.url().should('include', '/pagesCat/golf')
+        cy.url().should('include', '/golf')
 
         //bajo hasta el footer
         cy.wait(1500)
@@ -70,7 +70,7 @@ describe('Navegacion footer', () => {
 
         //compruebo que el url sea el correcto
         cy.wait(1500)
-        cy.url().should('include', '/pagesCat/hockey')
+        cy.url().should('include', '/hockey')
 
         //bajo hasta el footer
         cy.wait(1500)
@@ -82,7 +82,7 @@ describe('Navegacion footer', () => {
 
         //compruebo que el url sea el correcto
         cy.wait(1500)
-        cy.url().should('include', '/pagesCat/ciclismo')
+        cy.url().should('include', '/ciclismo')
 
         //bajo hasta el footer
         cy.wait(1500)
@@ -94,7 +94,7 @@ describe('Navegacion footer', () => {
 
         //compruebo que el url sea el correcto
         cy.wait(1500)
-        cy.url().should('include', '/pagesCat/baseball')
+        cy.url().should('include', '/baseball')
 
         
 
