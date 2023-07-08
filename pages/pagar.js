@@ -43,7 +43,7 @@ const pagar = () => {
             setamount(response.data.amount)
             settransaction_date(response.data.transaction_date)
 
-            const resp2 = await axios.put('/api/historial',{buyOr:response.data.buy_order})
+            const resp2 = await axios.put('/api/historial', { buyOr: response.data.buy_order })
         } catch (error) {
             console.log('XXXXXXXXX SE CALLO LA AAAAA XXXXXXXXXXX')
         }
@@ -64,7 +64,8 @@ const pagar = () => {
             estado(Tkn)
             setFinish(true);//A veces el proceso entra en bucle
         } else {
-            router.push('/')
+            //router.push('/')
+            console.log('se anulo la compra')
         }
     }, []);
 

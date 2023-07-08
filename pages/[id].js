@@ -5,11 +5,11 @@ import { getItemData } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 
-export default function ProductPage({ productInfo }) {
+export default function ProductPage({ item }) {
   return (
     <div>
       <Navbar />
-      <Prodcards item={productInfo.data} showAs="Page" />
+      <Prodcards item={item.data} showAs="Page" />
       <Footer />
     </div>
   );
@@ -30,7 +30,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      productInfo: product,
+      item: product,
     },
   };
 }
